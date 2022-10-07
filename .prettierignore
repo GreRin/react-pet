@@ -1,0 +1,8 @@
+.editorconfig
+.eslintignore
+.gitignore
+.idea
+.prettierignore
+src/favicon.ico
+build
+coverage
