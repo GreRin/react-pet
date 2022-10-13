@@ -7,6 +7,5 @@
   "bracketSameLine": false,
   "arrowParens": "always",
   "endOfLine": "auto",
-  "printWidth": 80,
-  "trailingComma": "all"
+  "printWidth": 140
 }

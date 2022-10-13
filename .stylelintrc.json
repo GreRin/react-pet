@@ -1,10 +1,34 @@
 {
-  "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
+  "extends": ["stylelint-config-standard-scss"],
   "rules": {
-    "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true,
+    "color-hex-case": "lower",
+    "block-no-empty": true,
+    "font-weight-notation": "numeric",
+    "length-zero-no-unit": true,
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-colon-space-after": "always",
+    "declaration-colon-space-before": "never",
+    "declaration-block-semicolon-space-before": "never",
+    "declaration-bang-space-before": "always",
+    "declaration-block-no-shorthand-property-overrides": true,
+    "declaration-empty-line-before": "never",
+    "block-opening-brace-newline-after": "always",
+    "block-closing-brace-space-before": "always-single-line",
+    "block-closing-brace-newline-after": "always",
+    "block-closing-brace-newline-before": "always",
+    "selector-list-comma-newline-after": "always",
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"]
+      }
+    ],
     "string-quotes": "single",
-    "block-no-empty": null,
-    "indentation": 2
+    "color-named": "never",
+    "indentation": 2,
+    "no-invalid-double-slash-comments": true,
+    "shorthand-property-no-redundant-values": true,
+    "selector-combinator-space-after": "always",
+    "selector-combinator-space-before": "always"
   }
 }
