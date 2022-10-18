@@ -1,0 +1,12 @@
+@import './../styles/colors';
+
+.toast {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  border-color: $red-10;
+}
+
+.toast-header {
+  border-color: $red-10;
+}
