@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './AuthPage.scss';
+import { useHttp } from '../../hooks/http.hook';
 
 export const AuthPage = (): any => {
+  const { loading, customError, request } = useHttp();
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
 
-  const formHandler = (event: { target: { name: any; value: any } }): void => {
+  const formHandler = (event: any): void => {
     setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  const requestHandler = async (event: any): Promise<void> => {
+    try {
+      const data = await request('/api/signup', 'POST', { ...form });
+      console.log('data', data);
+    } catch (error) {
+      console.log(error, customError);
+    }
   };
 
   return (
@@ -18,20 +29,17 @@ export const AuthPage = (): any => {
         <Form className="border p-3">
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" onChange={formHandler} />
+            <Form.Control name="email" type="email" placeholder="Enter email" onChange={formHandler} />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" onChange={formHandler} />
+            <Form.Control name="password" type="password" placeholder="Password" onChange={formHandler} />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          <Button className="me-2" variant="primary" type="submit">
+          <Button className="me-2" variant="primary" type="submit" disabled={loading}>
             Log In
           </Button>
-          <Button variant="secondary" type="submit">
+          <Button variant="secondary" type="submit" onClick={requestHandler} disabled={loading}>
             Sign Up
           </Button>
         </Form>

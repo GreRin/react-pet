@@ -13,6 +13,7 @@
     "lint:eslint:fix": "npx eslint src/**/*.tsx --quiet --fix",
     "lint:fix": "npm run lint:scss:fix && npm run lint:prettier:fix && npm run lint:eslint:fix"
   },
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -22,6 +23,7 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "bootstrap": "^5.2.2",
+    "http-proxy-middleware": "^2.0.6",
     "materialize-css": "^1.0.0-rc.2",
     "node-sass": "^7.0.3",
     "postcss": "^8.4.17",
