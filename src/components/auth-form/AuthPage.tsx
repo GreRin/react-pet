@@ -21,9 +21,17 @@ export const AuthPage = (): any => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const requestHandler = async (): Promise<void> => {
+  const registerHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/signup', 'POST', { ...form });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loginHandler = async (): Promise<void> => {
+    try {
+      const data = await request('/api/login', 'POST', { ...form });
     } catch (error) {
       console.log(error);
     }
@@ -42,10 +50,10 @@ export const AuthPage = (): any => {
             <Form.Label>Password</Form.Label>
             <Form.Control name="password" type="password" placeholder="Password" onChange={formHandler} />
           </Form.Group>
-          <Button className="me-2" variant="primary" type="submit" disabled={loading}>
+          <Button className="me-2" variant="primary" type="submit" onClick={loginHandler} disabled={loading}>
             Log In
           </Button>
-          <Button variant="secondary" type="submit" onClick={requestHandler} disabled={loading}>
+          <Button variant="secondary" type="submit" onClick={registerHandler} disabled={loading}>
             Sign Up
           </Button>
         </Form>
