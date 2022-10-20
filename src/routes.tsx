@@ -4,21 +4,30 @@ import { LinksPage } from './components/LinksPage';
 import { AuthPage } from './components/auth-form/AuthPage';
 import { CreatePage } from './components/CreatePage';
 import { DetailPage } from './components/DetailPage';
+import SharedLayout from './components/SharedLayout';
+import Home from './components/HomePage';
+import { ErrorPage } from './components/ErrorPage';
 
 export const useRoutes = (isAuthenticated: any): any => {
   if (isAuthenticated) {
     return (
       <Routes>
-        <Route path="/links" element={<LinksPage />} />
-        <Route path="/create" element={<CreatePage />} />
-        <Route path="/detail/:id" element={<DetailPage />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/links" element={<LinksPage />} />
+          <Route path="/create" element={<CreatePage />} />
+          <Route path="/detail" element={<DetailPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
       </Routes>
     );
   }
 
   return (
     <Routes>
-      <Route path="/" element={<AuthPage />} />
+      <Route path="/auth" element={<AuthPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };

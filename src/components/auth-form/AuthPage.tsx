@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './AuthPage.scss';
 import { useHttp } from '../../hooks/http.hook';
 import ToastError from '../../common/Toast';
+import { AuthContext } from '../../context/AuthContext';
+import useDeepCompareEffect from 'use-deep-compare-effect';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthPage = (): any => {
+  const auth = useContext(AuthContext);
   const { loading, customError, request, clearError } = useHttp();
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
   const [err, setErr] = useState('');
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     setErr(customError);
-    // clearError();
-  }, [customError, clearError]);
+    clearError();
+  }, [setErr, clearError]);
 
   const formHandler = (event: any): void => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -24,6 +29,7 @@ export const AuthPage = (): any => {
   const registerHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/signup', 'POST', { ...form });
+      if (data) navigate('/');
     } catch (error) {
       console.log(error);
     }
@@ -32,6 +38,10 @@ export const AuthPage = (): any => {
   const loginHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/login', 'POST', { ...form });
+      if (data) {
+        auth.login(data.token, data.userId);
+        navigate('/');
+      }
     } catch (error) {
       console.log(error);
     }
