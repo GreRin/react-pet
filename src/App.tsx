@@ -10,6 +10,7 @@ const App = (): any => {
   const { token, login, logout, userId } = useAuth();
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
+
   return (
     <AuthContext.Provider value={{ token, login, logout, userId, isAuthenticated }}>
       <BrowserRouter>{routes}</BrowserRouter>

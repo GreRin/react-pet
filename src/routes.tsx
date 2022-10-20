@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { LinksPage } from './components/LinksPage';
 import { AuthPage } from './components/auth-form/AuthPage';
 import { CreatePage } from './components/CreatePage';
@@ -18,6 +18,7 @@ export const useRoutes = (isAuthenticated: any): any => {
           <Route path="/create" element={<CreatePage />} />
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/redirect" element={<Navigate to="/" />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
@@ -26,7 +27,8 @@ export const useRoutes = (isAuthenticated: any): any => {
 
   return (
     <Routes>
-      <Route path="/auth" element={<AuthPage />} />
+      <Route path="/" element={<AuthPage />} />
+      <Route path="/redirect" element={<Navigate to="/" />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

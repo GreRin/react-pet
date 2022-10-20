@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import NavMenu from './Nav';
+import NavMenu from './nav-component/Nav';
 
 const SharedLayout = (): any => {
   return (

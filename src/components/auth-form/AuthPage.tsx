@@ -3,12 +3,10 @@ import { Button, Form } from 'react-bootstrap';
 import './AuthPage.scss';
 import { useHttp } from '../../hooks/http.hook';
 import ToastError from '../../common/Toast';
-import { AuthContext } from '../../context/AuthContext';
-import useDeepCompareEffect from 'use-deep-compare-effect';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 export const AuthPage = (): any => {
-  const auth = useContext(AuthContext);
   const { loading, customError, request, clearError } = useHttp();
   const [form, setForm] = useState({
     email: '',
@@ -16,8 +14,9 @@ export const AuthPage = (): any => {
   });
   const [err, setErr] = useState('');
   const navigate = useNavigate();
+  const auth = useContext(AuthContext);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     setErr(customError);
     clearError();
   }, [setErr, clearError]);

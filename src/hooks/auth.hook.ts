@@ -1,5 +1,4 @@
-import { useState, useCallback, SetStateAction, useEffect } from 'react';
-import useDeepCompareEffect from 'use-deep-compare-effect';
+import { useState, useCallback, useEffect } from 'react';
 
 const storageName: string = 'userData';
 
@@ -8,11 +7,10 @@ export const useAuth = (): any => {
   const [userId, setUserId] = useState<string | null>(null);
 
   const login = useCallback(
-    (jwtToken: SetStateAction<string | null>, id: SetStateAction<string | null>) => {
+    (jwtToken: any, id: any) => {
       setToken(jwtToken);
       setUserId(id);
-
-      localStorage.setItem(storageName, JSON.stringify({ userId, token }));
+      localStorage.setItem(storageName, JSON.stringify({ userId: id, token: jwtToken }));
     },
     [token, userId]
   );
@@ -23,7 +21,7 @@ export const useAuth = (): any => {
     localStorage.removeItem(storageName);
   }, []);
 
-  useDeepCompareEffect((): void => {
+  useEffect((): void => {
     const data = JSON.parse(localStorage.getItem(storageName) || '{}');
 
     if (data && data.token) {
