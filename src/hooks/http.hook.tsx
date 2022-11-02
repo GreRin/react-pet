@@ -23,14 +23,13 @@ export const useHttp = (): any => {
       if (!responce.ok) {
         throw new Error(data.message || 'Something goes wrong!');
       }
-
       setLoading(false);
 
       return data;
     } catch (error) {
       setLoading(false);
       setError(error.message);
-      throw error.message;
+      throw error;
     }
   }, []);
 

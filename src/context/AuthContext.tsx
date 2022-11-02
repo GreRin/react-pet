@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-function noop(token: string | null, userId: string | null): void {}
+function noop(token: string | null, userId: string | null, messageData: string | null, statusData: number | null): void {}
 
 export const AuthContext = createContext({
   token: null,
@@ -8,4 +8,6 @@ export const AuthContext = createContext({
   login: noop,
   logout: noop,
   isAuthenticated: false,
+  messageData: null,
+  statusData: null,
 });

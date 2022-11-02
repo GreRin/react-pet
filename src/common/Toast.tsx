@@ -1,20 +1,40 @@
 import Toast from 'react-bootstrap/Toast';
 import './Toast.scss';
-import { useState } from 'react';
+import { ForwardedRef, forwardRef, useContext, useImperativeHandle, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
-function ToastError({ message }: { message: string }): JSX.Element {
-  const [showToast, setShowToast] = useState(true);
+const ToastNotification = forwardRef(({ ...props }: any, ref: ForwardedRef<any>): any => {
+  const [showToast, setShowToast] = useState(false);
+  const [style, setStyle] = useState('');
+  const auth = useContext(AuthContext);
+
+  console.log(props);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      show() {
+        console.log('show', props);
+        setStyle(props.statusData === 200 ? 'toast-success' : 'toast-error');
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 3000);
+      },
+    }),
+    [auth, props]
+  );
 
   const toggleShowToast = (): void => setShowToast(false);
 
   return (
-    <Toast className="toast" onClose={toggleShowToast} show={showToast}>
+    <Toast className={style} onClose={toggleShowToast} show={showToast}>
       <Toast.Header className="toast-header">
         <strong className="me-auto">Message</strong>
       </Toast.Header>
-      <Toast.Body>{message}</Toast.Body>
+      <Toast.Body>{props.messageData}</Toast.Body>
     </Toast>
   );
-}
+});
 
-export default ToastError;
+export default ToastNotification;

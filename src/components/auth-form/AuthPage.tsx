@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './AuthPage.scss';
 import { useHttp } from '../../hooks/http.hook';
-import ToastError from '../../common/Toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import ToastNotification from '../../common/Toast';
 
 export const AuthPage = (): any => {
   const { loading, customError, request, clearError } = useHttp();
@@ -13,22 +13,38 @@ export const AuthPage = (): any => {
     password: '',
   });
   const [err, setErr] = useState('');
+  const [] = useState({});
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
+  const toastRef = useRef(null);
 
   useEffect(() => {
     setErr(customError);
     clearError();
-  }, [setErr, clearError]);
+  }, [setErr, clearError, customError]);
 
   const formHandler = (event: any): void => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
+  const showToast = (): any => {
+    // @ts-ignore
+    toastRef.current.show();
+  };
+
   const registerHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/signup', 'POST', { ...form });
-      if (data) navigate('/');
+      if (data) {
+        auth.login(data.token, data.userId, data.message, data.status);
+        auth.isAuthenticated = true;
+        auth.token = data.token;
+        auth.userId = data.userId;
+        auth.messageData = data.message;
+        auth.statusData = data.status;
+        showToast();
+        navigate('/');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -37,8 +53,15 @@ export const AuthPage = (): any => {
   const loginHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/login', 'POST', { ...form });
+      console.log(data);
       if (data) {
-        auth.login(data.token, data.userId);
+        auth.login(data.token, data.userId, data.message, data.status);
+        auth.isAuthenticated = true;
+        auth.token = data.token;
+        auth.userId = data.userId;
+        auth.messageData = data.message;
+        auth.statusData = data.status;
+        showToast();
         navigate('/');
       }
     } catch (error) {
@@ -67,7 +90,8 @@ export const AuthPage = (): any => {
           </Button>
         </Form>
       </div>
-      {customError ? <ToastError message={customError} /> : null}
+      <ToastNotification ref={toastRef} data={auth} />
+      <Button onClick={showToast}>Check Toast</Button>
     </div>
   );
 };

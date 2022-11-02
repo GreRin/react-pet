@@ -1,12 +1,24 @@
 @import './../styles/colors';
+@import './../styles/mixins';
 
 .toast {
   position: absolute;
   top: 2%;
   right: 2%;
-  border-color: $red-10;
-}
 
-.toast-header {
-  border-color: $red-10;
+  &-success {
+    @include toast-success;
+
+    & > * {
+      @include toast-success;
+    }
+  }
+
+  &-error {
+    @include toast-error;
+
+    & > * {
+      @include toast-error;
+    }
+  }
 }

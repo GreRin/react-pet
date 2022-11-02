@@ -10,7 +10,7 @@ function NavMenu(): any {
 
   const logoutHandler = (event: { preventDefault: () => void }): any => {
     event.preventDefault();
-    auth.logout(null, null);
+    auth.logout(null, null, null, null);
     navigate('/');
   };
 
