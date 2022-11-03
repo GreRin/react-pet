@@ -1,0 +1,15 @@
+@import '../../styles/colors';
+
+.list-group {
+  overflow-y: scroll;
+  max-height: 200px;
+
+  &__items {
+    &:hover {
+      color: $white;
+      cursor: pointer;
+      background: #ccc;
+      transition: color;
+    }
+  }
+}

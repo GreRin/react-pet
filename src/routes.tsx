@@ -5,7 +5,7 @@ import { AuthPage } from './components/auth-form/AuthPage';
 import { CreatePage } from './components/CreatePage';
 import { DetailPage } from './components/DetailPage';
 import SharedLayout from './components/SharedLayout';
-import Home from './components/HomePage';
+import Home from './components/home-page/HomePage';
 import { ErrorPage } from './components/ErrorPage';
 
 export const useRoutes = (isAuthenticated: any): any => {

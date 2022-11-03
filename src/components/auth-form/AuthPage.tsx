@@ -5,6 +5,7 @@ import { useHttp } from '../../hooks/http.hook';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import ToastNotification from '../../common/Toast';
+import { authApi } from '../../store/auth/auth.api';
 
 export const AuthPage = (): any => {
   const { loading, customError, request, clearError } = useHttp();
@@ -53,7 +54,8 @@ export const AuthPage = (): any => {
   const loginHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/login', 'POST', { ...form });
-      console.log(data);
+      const data2 = authApi.endpoints.login;
+      console.log('data2', data2);
       if (data) {
         auth.login(data.token, data.userId, data.message, data.status);
         auth.isAuthenticated = true;

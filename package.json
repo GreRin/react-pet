@@ -25,7 +25,6 @@
     "bootstrap": "^5.2.2",
     "http-proxy-middleware": "^2.0.6",
     "node-sass": "^7.0.3",
-    "postcss": "^8.4.17",
     "postcss-scss": "^4.0.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
