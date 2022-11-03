@@ -1,4 +1,12 @@
+@import '../../styles/colors';
+
 .navbar {
   display: flex;
   justify-content: flex-start;
+  background-color: $gray-25;
+
+  &__link {
+    text-decoration: none;
+    color: $gray-99;
+  }
 }

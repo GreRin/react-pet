@@ -26,7 +26,7 @@ const Home = (): any => {
 
   return (
     <section className="section">
-      <h2>Home page</h2>
+      <h2 className="ms-3">Home page</h2>
       {isError && <p className="text-center bg-danger">Something went wrong ...</p>}
 
       <div className="relative w-auto m-3">

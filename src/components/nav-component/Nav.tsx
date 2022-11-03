@@ -22,13 +22,15 @@ function NavMenu(): any {
       <Link className="navbar__link m-3" to="/links">
         Links
       </Link>
-      <Link className="navbar__link m-3" to="/create">
-        Create
+      <Link className="navbar__link m-3" to="/favourites">
+        Favourites
       </Link>
-      <Link className="navbar__link m-3" to="/detail">
+      <Link className="navbar__link ye m-3" to="/detail">
         Detail
       </Link>
-      <Button onClick={logoutHandler}>Log Out</Button>
+      <Button className="btn-warning" onClick={logoutHandler}>
+        Log Out
+      </Button>
     </nav>
   );
 }

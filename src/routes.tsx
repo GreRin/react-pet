@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LinksPage } from './components/LinksPage';
 import { AuthPage } from './components/auth-form/AuthPage';
-import { CreatePage } from './components/CreatePage';
+import { FavouritesPage } from './components/favourites/FavouritesPage';
 import { DetailPage } from './components/DetailPage';
 import SharedLayout from './components/SharedLayout';
 import Home from './components/home-page/HomePage';
@@ -15,7 +15,7 @@ export const useRoutes = (isAuthenticated: any): any => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="/links" element={<LinksPage />} />
-          <Route path="/create" element={<CreatePage />} />
+          <Route path="/favourites" element={<FavouritesPage />} />
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/redirect" element={<Navigate to="/" />} />
