@@ -3,3 +3,11 @@
 h1 {
   color: $sand-dark;
 }
+
+.Toastify__toast-container--top-right {
+  top: 15% !important;
+}
+
+.toast {
+  background-color: $purple-90;
+}

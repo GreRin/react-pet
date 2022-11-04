@@ -3,11 +3,11 @@ import './RepoCard.scss';
 import { IRepo } from '../../../models/models';
 import { Button } from 'react-bootstrap';
 import { useActions } from '../../../hooks/actions';
-import { useHubSelector } from '../../../hooks/redux';
+import { useAppSelector } from '../../../hooks/redux';
 
 const RepoCard = ({ repo }: { repo: IRepo }): any => {
   const { addFavourite, removeFavourite } = useActions();
-  const { favourites } = useHubSelector((state) => state.github);
+  const { favourites } = useAppSelector((state) => state.github);
 
   const [isFav, setIsFav] = useState(favourites.includes(repo.html_url));
 

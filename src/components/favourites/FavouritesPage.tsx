@@ -1,8 +1,8 @@
 import React from 'react';
-import { useHubSelector } from '../../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 
 export const FavouritesPage = (): any => {
-  const { favourites } = useHubSelector((state) => state.github);
+  const { favourites } = useAppSelector((state) => state.github);
 
   if (favourites.length === 0) return <p className="text-center">No items.</p>;
 

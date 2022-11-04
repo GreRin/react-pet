@@ -4,8 +4,7 @@ import './AuthPage.scss';
 import { useHttp } from '../../hooks/http.hook';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import ToastNotification from '../../common/Toast';
-import { authApi } from '../../store/auth/auth.api';
+import { toast } from 'react-toastify';
 
 export const AuthPage = (): any => {
   const { loading, customError, request, clearError } = useHttp();
@@ -14,23 +13,21 @@ export const AuthPage = (): any => {
     password: '',
   });
   const [err, setErr] = useState('');
-  const [] = useState({});
+  const [result, setResult] = useState<any>({});
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
-  const toastRef = useRef(null);
 
   useEffect(() => {
     setErr(customError);
     clearError();
-  }, [setErr, clearError, customError]);
+  }, [customError]);
+
+  useEffect(() => {
+    toast(result.message);
+  }, [result, auth]);
 
   const formHandler = (event: any): void => {
     setForm({ ...form, [event.target.name]: event.target.value });
-  };
-
-  const showToast = (): any => {
-    // @ts-ignore
-    toastRef.current.show();
   };
 
   const registerHandler = async (): Promise<void> => {
@@ -43,31 +40,30 @@ export const AuthPage = (): any => {
         auth.userId = data.userId;
         auth.messageData = data.message;
         auth.statusData = data.status;
-        showToast();
         navigate('/');
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
   const loginHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/login', 'POST', { ...form });
-      const data2 = authApi.endpoints.login;
-      console.log('data2', data2);
+      // const data2 = authApi.endpoints.login;
+      // console.log('data', data);
       if (data) {
+        setResult(data);
         auth.login(data.token, data.userId, data.message, data.status);
         auth.isAuthenticated = true;
         auth.token = data.token;
         auth.userId = data.userId;
         auth.messageData = data.message;
         auth.statusData = data.status;
-        showToast();
         navigate('/');
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -84,7 +80,7 @@ export const AuthPage = (): any => {
             <Form.Label>Password</Form.Label>
             <Form.Control name="password" type="password" placeholder="Password" onChange={formHandler} />
           </Form.Group>
-          <Button className="me-2" variant="primary" type="submit" onClick={loginHandler} disabled={loading}>
+          <Button className="me-2" variant="warning" type="submit" onClick={loginHandler} disabled={loading}>
             Log In
           </Button>
           <Button variant="secondary" type="submit" onClick={registerHandler} disabled={loading}>
@@ -92,8 +88,6 @@ export const AuthPage = (): any => {
           </Button>
         </Form>
       </div>
-      <ToastNotification ref={toastRef} data={auth} />
-      <Button onClick={showToast}>Check Toast</Button>
     </div>
   );
 };

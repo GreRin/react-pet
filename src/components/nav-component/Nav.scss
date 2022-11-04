@@ -7,6 +7,26 @@
 
   &__link {
     text-decoration: none;
-    color: $gray-99;
+
+    &-light {
+      color: $white;
+    }
+
+    &-dark {
+      color: $purple-90
+    }
+  }
+}
+
+.bg-purple {
+  background-color: $purple-90;
+}
+
+.btn-purple {
+  background-color: $purple-90;
+  border: none;
+
+  &:hover {
+    background-color: $purple-50;
   }
 }

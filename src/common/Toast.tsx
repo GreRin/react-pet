@@ -8,8 +8,6 @@ const ToastNotification = forwardRef(({ ...props }: any, ref: ForwardedRef<any>)
   const [style, setStyle] = useState('');
   const auth = useContext(AuthContext);
 
-  console.log(props);
-
   useImperativeHandle(
     ref,
     () => ({

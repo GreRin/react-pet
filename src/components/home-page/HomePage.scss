@@ -1,5 +1,9 @@
 @import '../../styles/colors';
 
+.aside {
+  border-right: 1px solid $gray-opacity;
+}
+
 .list-group {
   overflow-y: scroll;
   max-height: 200px;
@@ -8,7 +12,7 @@
     &:hover {
       color: $white;
       cursor: pointer;
-      background: #ccc;
+      background: $gray-cc;
       transition: color;
     }
   }
