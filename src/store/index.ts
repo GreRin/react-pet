@@ -4,6 +4,7 @@ import { authApi } from './auth/auth.api';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { githubReducer } from './github/github.slice';
 import { themeReducer } from '../features/counter/theme-slice';
+import { dogApiSlice } from '../features/dog/dog-api-slice';
 
 export const store = configureStore({
   reducer: {
@@ -11,8 +12,9 @@ export const store = configureStore({
     github: githubReducer,
     [authApi.reducerPath]: authApi.reducer,
     theme: themeReducer,
+    [dogApiSlice.reducerPath]: dogApiSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(githubApi.middleware, authApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(githubApi.middleware, authApi.middleware, dogApiSlice.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

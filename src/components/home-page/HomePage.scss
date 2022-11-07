@@ -4,6 +4,10 @@
   border-right: 1px solid $gray-opacity;
 }
 
+.home-section {
+  grid-template-columns: auto auto auto;
+}
+
 .list-group {
   overflow-y: scroll;
   max-height: 200px;

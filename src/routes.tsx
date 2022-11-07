@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { LinksPage } from './components/LinksPage';
+import { LinksPage } from './components/links-component/LinksPage';
 import { AuthPage } from './components/auth-form/AuthPage';
 import { FavouritesPage } from './components/favourites/FavouritesPage';
 import { DetailPage } from './components/DetailPage';

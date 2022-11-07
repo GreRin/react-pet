@@ -22,7 +22,7 @@ const RepoCard = ({ repo }: { repo: IRepo }): any => {
   };
 
   return (
-    <div className="card my-2">
+    <div className="card m-2">
       <div className="card-header">{repo.full_name}</div>
       <div className="card-body">
         <p className="card-text">

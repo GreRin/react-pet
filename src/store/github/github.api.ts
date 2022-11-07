@@ -6,6 +6,7 @@ export const githubApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.github.com/',
   }),
+  refetchOnFocus: true,
   endpoints: (build) => ({
     searchUsers: build.query<IUser[], string>({
       query: (search: string) => ({
@@ -17,7 +18,7 @@ export const githubApi = createApi({
       }),
       transformResponse: (response: ServerResponce<IUser>) => response.items,
     }),
-    getUserQuery: build.query<IRepo[], string>({
+    getUsersRepo: build.query<IRepo[], string>({
       query: (username: string) => ({
         url: `users/${username}/repos`,
       }),
@@ -25,4 +26,4 @@ export const githubApi = createApi({
   }),
 });
 
-export const { useSearchUsersQuery, useLazyGetUserQueryQuery } = githubApi;
+export const { useSearchUsersQuery, useLazyGetUsersRepoQuery } = githubApi;

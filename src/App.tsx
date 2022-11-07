@@ -16,9 +16,9 @@ const App = (): any => {
 
   useEffect(() => {
     if (statusData === 200) {
-      toast.success(messageData);
+      toast.success(messageData, { position: 'bottom-right' });
     } else {
-      toast.error(messageData);
+      toast.error(messageData, { position: 'bottom-right' });
     }
   });
 

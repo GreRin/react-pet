@@ -43,7 +43,7 @@ export const AuthPage = (): any => {
         navigate('/');
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message, { position: 'bottom-right' });
     }
   };
 
@@ -63,7 +63,7 @@ export const AuthPage = (): any => {
         navigate('/');
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message, { position: 'bottom-right' });
     }
   };
 

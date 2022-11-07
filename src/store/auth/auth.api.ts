@@ -8,8 +8,8 @@ export const authApi = createApi({
   }),
   refetchOnFocus: true,
   endpoints: (build) => ({
-    login: build.query<ILogin, any>({
-      query: () => ({
+    login: build.query<ILogin, string>({
+      query: (body) => ({
         url: `login`,
       }),
     }),
