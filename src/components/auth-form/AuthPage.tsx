@@ -50,8 +50,6 @@ export const AuthPage = (): any => {
   const loginHandler = async (): Promise<void> => {
     try {
       const data = await request('/api/login', 'POST', { ...form });
-      // const data2 = authApi.endpoints.login;
-      // console.log('data', data);
       if (data) {
         setResult(data);
         auth.login(data.token, data.userId, data.message, data.status);

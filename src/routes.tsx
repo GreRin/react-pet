@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { LinksPage } from './components/links-component/LinksPage';
 import { AuthPage } from './components/auth-form/AuthPage';
 import { FavouritesPage } from './components/favourites/FavouritesPage';
-import { DetailPage } from './components/DetailPage';
+import { DetailPage } from './components/detail-page/DetailPage';
 import SharedLayout from './components/SharedLayout';
 import Home from './components/home-page/HomePage';
 import { ErrorPage } from './components/ErrorPage';

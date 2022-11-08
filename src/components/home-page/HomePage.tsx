@@ -3,7 +3,6 @@ import './HomePage.scss';
 import { useLazyGetUsersRepoQuery, useSearchUsersQuery } from '../../store/github/github.api';
 import { useDebounce } from '../../hooks/debounce';
 import RepoCard from './repo-card/RepoCard';
-import { Button } from 'react-bootstrap';
 
 const Home = (): any => {
   const [search, setSearch] = useState('react');
@@ -22,8 +21,6 @@ const Home = (): any => {
     fetchRepos(username);
     setDropdown(false);
   };
-
-  const createPdf = (): any => {};
 
   return (
     <>
@@ -58,9 +55,6 @@ const Home = (): any => {
             <RepoCard repo={repo} key={repo.id} />
           ))}
         </div>
-        <Button className="btn-pdf btn-secondary py-2 px-4 ms-3 mb-3 rounded" onClick={createPdf}>
-          Create PDF
-        </Button>
       </div>
     </>
   );
