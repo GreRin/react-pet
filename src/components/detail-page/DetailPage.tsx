@@ -6,9 +6,10 @@ import moment from 'moment';
 import { Packer } from 'docx';
 import { DocumentCreator } from './cv/cv-generator';
 import { experiences, education, skills, achievements } from './cv/cv-data';
+import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 
 export const DetailPage = (): any => {
-  const data = moment('12-11-2021').format('w');
+  const data = moment('11-06-2021').format('w');
   const [week, year] = [20, 2021];
   console.log(moment(`${week} ${year}`, 'WW YYYY').format('ww'));
   const n = moment('20 2021', 'WW YYYY').startOf('isoWeek').format('DD MMM YYYY');
@@ -19,12 +20,10 @@ export const DetailPage = (): any => {
     const doc = documentCreator.create([experiences, education, skills, achievements]);
 
     Packer.toBlob(doc).then((blob) => {
-      console.log(blob);
       saveAs(blob, 'example.docx');
       console.log('Document created successfully');
     });
   };
-  const createPdf = async (): Promise<any> => {};
 
   return (
     <div className="position-relative">
@@ -33,9 +32,6 @@ export const DetailPage = (): any => {
       <button onClick={() => console.log(moment().format('x'))}>check</button>
       <Button className="btn-docx btn-secondary py-2 px-4 ms-3 mb-3 rounded" onClick={createDocx}>
         Create DOCX
-      </Button>
-      <Button className="btn-pdf btn-secondary py-2 px-4 ms-3 mb-3 rounded" onClick={createPdf}>
-        Create PDF
       </Button>
     </div>
   );

@@ -6,6 +6,7 @@ import { FavouritesPage } from './components/favourites/FavouritesPage';
 import { DetailPage } from './components/detail-page/DetailPage';
 import SharedLayout from './components/SharedLayout';
 import Home from './components/home-page/HomePage';
+import { PdfPage } from './components/pdf-page/PdfPage';
 import { ErrorPage } from './components/ErrorPage';
 
 export const useRoutes = (isAuthenticated: any): any => {
@@ -17,6 +18,7 @@ export const useRoutes = (isAuthenticated: any): any => {
           <Route path="/links" element={<LinksPage />} />
           <Route path="/favourites" element={<FavouritesPage />} />
           <Route path="/detail" element={<DetailPage />} />
+          <Route path="/pdf" element={<PdfPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/redirect" element={<Navigate to="/" />} />
           <Route path="*" element={<ErrorPage />} />

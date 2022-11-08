@@ -24,7 +24,9 @@ function NavMenu(): any {
   };
 
   return (
-    <nav className={'navbar justify-content-between p-3 ' + (theme ? 'navbar-light bg-light' : 'navbar-light bg-purple')}>
+    <nav
+      className={'navbar justify-content-between p-3 ' + (theme ? 'navbar-light bg-light' : 'navbar-light bg-purple')}
+    >
       <div>
         <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/">
           Home
@@ -37,6 +39,9 @@ function NavMenu(): any {
         </Link>
         <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/detail">
           Detail
+        </Link>
+        <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/pdf">
+          Create PDF
         </Link>
       </div>
       <div>
