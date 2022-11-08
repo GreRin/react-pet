@@ -14,7 +14,8 @@ export const store = configureStore({
     theme: themeReducer,
     [dogApiSlice.reducerPath]: dogApiSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(githubApi.middleware, authApi.middleware, dogApiSlice.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(githubApi.middleware, authApi.middleware, dogApiSlice.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

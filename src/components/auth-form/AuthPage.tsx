@@ -20,7 +20,7 @@ export const AuthPage = (): any => {
   useEffect(() => {
     setErr(customError);
     clearError();
-  }, [customError]);
+  }, [customError, clearError]);
 
   useEffect(() => {
     toast(result.message);

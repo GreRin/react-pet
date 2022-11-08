@@ -19,7 +19,12 @@ export class DocumentCreator {
             ...educations
               .map((education: IEducation) => {
                 const arr: Paragraph[] = [];
-                arr.push(this.createInstitutionHeader(education.schoolName, `${education.startDate.year} - ${education.endDate.year}`));
+                arr.push(
+                  this.createInstitutionHeader(
+                    education.schoolName,
+                    `${education.startDate.year} - ${education.endDate.year}`
+                  )
+                );
                 arr.push(this.createRoleText(`${education.fieldOfStudy} - ${education.degree}`));
 
                 const bulletPoints = this.splitParagraphIntoBullets(education.notes);
@@ -61,11 +66,14 @@ export class DocumentCreator {
             this.createInterests('Programming, Technology, Music Production, Web Design, 3D Modelling, Dancing.'),
             this.createHeading('References'),
             new Paragraph(
-              'Dr. Dean Mohamedally Director of Postgraduate Studies Department of Computer Science, University College London Malet Place, Bloomsbury, London WC1E d.mohamedally@ucl.ac.uk'
+              'Dr. Dean Mohamedally Director of Postgraduate Studies Department of Computer Science, ' +
+                'University College London Malet Place, Bloomsbury, London WC1E d.mohamedally@ucl.ac.uk'
             ),
             new Paragraph('More references upon request'),
             new Paragraph({
-              text: 'This CV was generated in real-time based on my Linked-In profile from my personal website www.dolan.bio.',
+              text:
+                'This CV was generated in real-time based on my Linked-In ' +
+                'profile from my personal website www.dolan.bio.',
               alignment: AlignmentType.CENTER,
             }),
           ],

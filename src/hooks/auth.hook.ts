@@ -13,7 +13,10 @@ export const useAuth = (): any => {
     setUserId(id);
     setMessageData(message);
     setStatus(status);
-    localStorage.setItem(storageName, JSON.stringify({ userId: id, token: jwtToken, messageData: message, statusData: status }));
+    localStorage.setItem(
+      storageName,
+      JSON.stringify({ userId: id, token: jwtToken, messageData: message, statusData: status })
+    );
   }, []);
 
   const logout = useCallback(() => {

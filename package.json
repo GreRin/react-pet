@@ -9,8 +9,8 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
-    "lint:prettier:fix": "prettier --write --ignore-unknown \"src/**/*.tsx\"",
-    "lint:eslint:fix": "npx eslint src/**/*.tsx --quiet --fix",
+    "lint:prettier:fix": "prettier --write --ignore-unknown \"src/**/*.{tsx, ts}\"",
+    "lint:eslint:fix": "npx eslint --ext src/**/*.tsx, --ext src/**/*.ts --quiet --fix",
     "lint:fix": "npm run lint:scss:fix && npm run lint:prettier:fix && npm run lint:eslint:fix"
   },
   "dependencies": {
