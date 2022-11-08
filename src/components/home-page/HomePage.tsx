@@ -3,6 +3,7 @@ import './HomePage.scss';
 import { useLazyGetUsersRepoQuery, useSearchUsersQuery } from '../../store/github/github.api';
 import { useDebounce } from '../../hooks/debounce';
 import RepoCard from './repo-card/RepoCard';
+import { Button } from 'react-bootstrap';
 
 const Home = (): any => {
   const [search, setSearch] = useState('react');
@@ -15,16 +16,18 @@ const Home = (): any => {
   useEffect(() => {
     fetchRepos('angular');
     setDropdown(debounced.length > 3 && data?.length! > 0);
-  }, [debounced]);
+  }, [debounced, data, fetchRepos]);
 
   const clickHandler = (username: string): any => {
     fetchRepos(username);
     setDropdown(false);
   };
 
+  const createPdf = (): any => {};
+
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex main">
         <aside className="aside">
           {isError && <p className="text-center bg-danger">Something went wrong ...</p>}
 
@@ -49,12 +52,15 @@ const Home = (): any => {
             )}
           </div>
         </aside>
-        <div className="w-100 d-grid home-section">
+        <div className="w-100 d-grid home-section position-relative">
           {areReposLoading && <div className="container">Repos are loading...</div>}
           {repos?.map((repo) => (
             <RepoCard repo={repo} key={repo.id} />
           ))}
         </div>
+        <Button className="btn-pdf btn-secondary py-2 px-4 ms-3 mb-3 rounded" onClick={createPdf}>
+          Create PDF
+        </Button>
       </div>
     </>
   );

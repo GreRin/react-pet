@@ -1,11 +1,23 @@
 @import '../../styles/colors';
 
-.aside {
-  border-right: 1px solid $gray-opacity;
-}
+.main {
+  height: calc(100vh - 70px);
 
-.home-section {
-  grid-template-columns: auto auto auto;
+  .aside {
+    border-right: 1px solid $gray-opacity;
+  }
+
+  .home-section {
+    grid-template-columns: auto auto auto;
+    position: relative;
+    overflow-y: scroll;
+  }
+
+  .btn-pdf {
+    right: 30px;
+    bottom: 0;
+    position: absolute;
+  }
 }
 
 .list-group {
