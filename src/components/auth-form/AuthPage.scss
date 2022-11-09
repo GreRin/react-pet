@@ -1,4 +1,22 @@
-.border {
-  border: 1px solid #ccc;
+@import '../../styles/colors';
+
+.auth-form {
+  border: 1px solid $gray-cc;
   border-radius: 10px;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    .input {
+      border: 1px solid $gray-cc;
+      border-radius: 5px;
+      height: 35px;
+      padding-left: 10px;
+    }
+
+    .notification {
+      color: $red-10;
+    }
+  }
 }

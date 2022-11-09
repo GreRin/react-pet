@@ -15,7 +15,7 @@ const App = (): any => {
   const routes = useRoutes(isAuthenticated);
 
   useEffect(() => {
-    if (statusData === 200) {
+    if (statusData === 200 || statusData === 201) {
       toast.success(messageData, { position: 'bottom-right' });
     } else {
       toast.error(messageData, { position: 'bottom-right' });
