@@ -6,7 +6,7 @@ import moment from 'moment';
 import { Packer } from 'docx';
 import { DocumentCreator } from './cv/cv-generator';
 import { experiences, education, skills, achievements } from './cv/cv-data';
-import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+import { useGetUsersQuery } from '../../store/auth/auth.api';
 
 export const DetailPage = (): any => {
   const data = moment('11-06-2021').format('w');
@@ -24,6 +24,10 @@ export const DetailPage = (): any => {
       console.log('Document created successfully');
     });
   };
+
+  const users = useGetUsersQuery('');
+
+  console.log(users);
 
   return (
     <div className="position-relative">

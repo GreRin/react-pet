@@ -28,7 +28,7 @@ export interface ServerResponce<T> {
 
 export interface IUserCustom {
   message: string;
-  token: string;
+  accessToken: string;
   userId: string;
   status: number;
 }

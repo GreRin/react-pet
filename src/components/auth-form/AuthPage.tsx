@@ -33,11 +33,10 @@ export const AuthPage = (): any => {
     setForm(props.values);
     try {
       const data = await request('/api/signup', 'POST', props.values);
-      console.log(data);
       if (data) {
-        auth.login(data.token, data.userId, data.message, data.status);
+        auth.login(data.accessToken, data.userId, data.message, data.status);
         auth.isAuthenticated = true;
-        auth.token = data.token;
+        auth.accessToken = data.accessToken;
         auth.userId = data.userId;
         auth.messageData = data.message;
         auth.statusData = data.status;
@@ -48,14 +47,14 @@ export const AuthPage = (): any => {
     }
   };
 
-  const loginHandler = async (): Promise<void> => {
+  const loginHandler = async (props: any): Promise<void> => {
     try {
-      const data = await request('/api/login', 'POST', { ...form });
+      const data = await request('/api/login', 'POST', props);
       if (data) {
         setResult(data);
-        auth.login(data.token, data.userId, data.message, data.status);
+        auth.login(data.accessToken, data.userId, data.message, data.status);
         auth.isAuthenticated = true;
-        auth.token = data.token;
+        auth.accessToken = data.accessToken;
         auth.userId = data.userId;
         auth.messageData = data.message;
         auth.statusData = data.status;
@@ -81,9 +80,8 @@ export const AuthPage = (): any => {
           }}
           validationSchema={AuthSchema}
           onSubmit={(values: IAuth, { setSubmitting }: FormikHelpers<IAuth>) => {
-            console.log(values);
             setForm(values);
-            loginHandler();
+            loginHandler(values);
             setSubmitting(false);
           }}
         >

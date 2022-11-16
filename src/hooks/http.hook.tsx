@@ -11,6 +11,7 @@ export const useHttp = (): any => {
         if (body) {
           body = JSON.stringify(body);
           headers['Content-Type'] = 'application/json';
+          headers['Content-TypeAccess-Control-Allow-Origin'] = '*';
         }
 
         const responce = await fetch(url, {

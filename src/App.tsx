@@ -10,8 +10,8 @@ import { store } from './store';
 import { toast, ToastContainer } from 'react-toastify';
 
 const App = (): any => {
-  const { token, login, logout, userId, messageData, statusData } = useAuth();
-  const isAuthenticated = !!token;
+  const { accessToken, login, logout, userId, messageData, statusData } = useAuth();
+  const isAuthenticated = !!accessToken;
   const routes = useRoutes(isAuthenticated);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const App = (): any => {
 
   return (
     <Provider store={store}>
-      <AuthContext.Provider value={{ token, login, logout, userId, isAuthenticated, messageData, statusData }}>
+      <AuthContext.Provider value={{ accessToken, login, logout, userId, isAuthenticated, messageData, statusData }}>
         <BrowserRouter>{routes}</BrowserRouter>
       </AuthContext.Provider>
       <ToastContainer

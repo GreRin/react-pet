@@ -5,6 +5,12 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:4000/api/',
+    prepareHeaders: (headers) => {
+      const data = JSON.parse(localStorage.getItem('userData') || '{}');
+      console.log(data.accessToken);
+      headers.set('authorization', data.accessToken ? data.accessToken : '');
+      return headers;
+    },
   }),
   refetchOnFocus: true,
   endpoints: (build) => ({
@@ -18,7 +24,13 @@ export const authApi = createApi({
         url: `signup`,
       }),
     }),
+    getUsers: build.query<any, any>({
+      query: () => ({
+        url: `users`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useLoginQuery, useSignupQuery } = authApi;
+export const { useLoginQuery, useSignupQuery, useGetUsersQuery } = authApi;

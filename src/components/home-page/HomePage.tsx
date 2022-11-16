@@ -9,7 +9,6 @@ const Home = (): any => {
   const debounced = useDebounce(search);
   const [dropdown, setDropdown] = useState(false);
   const { isLoading, isError, data } = useSearchUsersQuery(search);
-  console.log('useSearchUsersQuery', data);
   const [fetchRepos, { isLoading: areReposLoading, data: repos }] = useLazyGetUsersRepoQuery();
 
   useEffect(() => {

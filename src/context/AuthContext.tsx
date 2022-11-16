@@ -1,14 +1,14 @@
 import { createContext } from 'react';
 
 function noop(
-  token: string | null,
+  accessToken: string | null,
   userId: string | null,
   messageData: string | null,
   statusData: number | null
 ): void {}
 
 export const AuthContext = createContext({
-  token: null,
+  accessToken: null,
   userId: null,
   login: noop,
   logout: noop,
