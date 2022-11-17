@@ -16,6 +16,7 @@ export const AuthPage = (): any => {
     password: '',
   });
   const [err, setErr] = useState('');
+  const [forgotPWD, setForgotPWD] = useState(true);
   const [result, setResult] = useState<any>({});
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
@@ -70,6 +71,27 @@ export const AuthPage = (): any => {
     password: Yup.string().min(10, 'Too Short!').max(50, 'Too Long!').required('Required'),
   });
 
+  const forgotPasswordHandler = async (props: any): Promise<void> => {
+    if (props.values) {
+      if (props.values.email && !props.errors.email) {
+        try {
+          const data = await request('/api/restorePassword', 'POST', props.values);
+          if (data) {
+            setForgotPWD(true);
+            toast.success(data.message, { position: 'bottom-right' });
+          }
+        } catch (error) {
+          toast.error(error.message, { position: 'bottom-right' });
+        }
+      } else {
+        setForgotPWD(false);
+        toast.error('Email: ' + props.errors.email, { position: 'bottom-right' });
+      }
+    } else {
+      setForgotPWD(!forgotPWD);
+    }
+  };
+
   return (
     <div className="d-flex align-items-center h-100">
       <div className="col-6 offset-3">
@@ -95,27 +117,51 @@ export const AuthPage = (): any => {
                     <div className="notification">{props.errors.email}</div>
                   ) : null}
                 </div>
-                <div className="form-group mt-3">
-                  <label htmlFor="password">Password</label>
-                  <Field
-                    className="input"
-                    id="password"
-                    name="password"
-                    placeholder="example@gmail.com"
-                    type="password"
-                  />
-                  {props.errors.password && props.touched.password ? (
-                    <div className="notification">{props.errors.password}</div>
-                  ) : null}
-                </div>
-                <div className="btn-group mt-3">
-                  <Button className="me-2" variant="warning" type="submit" disabled={loading}>
-                    Log In
+                {forgotPWD && (
+                  <div className="form-group mt-3">
+                    <label htmlFor="password">Password</label>
+                    <Field
+                      className="input"
+                      id="password"
+                      name="password"
+                      placeholder="example@gmail.com"
+                      type="password"
+                    />
+                    {props.errors.password && props.touched.password ? (
+                      <div className="notification">{props.errors.password}</div>
+                    ) : null}
+                  </div>
+                )}
+                {forgotPWD ? (
+                  <div className="d-flex justify-content-between btn-group mt-3 w-100">
+                    <div>
+                      <Button className="me-2" variant="warning" type="submit" disabled={loading}>
+                        Log In
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        type="button"
+                        onClick={() => registerHandler(props)}
+                        disabled={loading}
+                      >
+                        Sign Up
+                      </Button>
+                    </div>
+                    <a className="forgot-password" onClick={forgotPasswordHandler}>
+                      Forgot password?
+                    </a>
+                  </div>
+                ) : (
+                  <Button
+                    className="mt-2"
+                    variant="warning"
+                    type="button"
+                    onClick={() => forgotPasswordHandler(props)}
+                    disabled={loading}
+                  >
+                    Restore password
                   </Button>
-                  <Button variant="secondary" type="button" onClick={() => registerHandler(props)} disabled={loading}>
-                    Sign Up
-                  </Button>
-                </div>
+                )}
               </div>
             </Form>
           )}
