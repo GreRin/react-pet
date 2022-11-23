@@ -5,18 +5,27 @@ import { AuthContext } from '../../context/AuthContext';
 import './Nav.scss';
 import { useAppSelector } from '../../hooks/redux';
 import { useActions } from '../../hooks/actions';
+import { useHttp } from '../../hooks/http.hook';
+import { toast } from 'react-toastify';
 
 function NavMenu(): any {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const theme = useAppSelector((state) => state.theme.theme);
   const { themeHandler } = useActions();
+  const { request } = useHttp();
 
-  const logoutHandler = (event: { preventDefault: () => void }): any => {
-    event.preventDefault();
-    auth.logout(null, null, null, null);
-    auth.isAuthenticated = false;
-    navigate('/');
+  const logoutHandler = async (event: { preventDefault: () => void }): Promise<any> => {
+    const data = await request('/api/logout', 'POST', { userId: auth.userId });
+    try {
+      event.preventDefault();
+      auth.logout(null, null, null, null);
+      auth.isAuthenticated = false;
+      toast.success(data.message, { position: 'bottom-right' });
+      navigate('/');
+    } catch (error) {
+      toast.error(error.message, { position: 'bottom-right' });
+    }
   };
 
   const changeThemeHandler = (): void => {

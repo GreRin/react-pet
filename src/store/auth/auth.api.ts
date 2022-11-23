@@ -5,10 +5,12 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:4000/api/',
+    credentials: 'include',
     prepareHeaders: (headers) => {
-      const data = JSON.parse(localStorage.getItem('userData') || '{}');
-      console.log(data.accessToken);
-      headers.set('authorization', data.accessToken ? data.accessToken : '');
+      const accessToken = localStorage.getItem('accessToken') || '';
+      console.log(document.cookie);
+      headers.set('cookies', document.cookie);
+      headers.set('authorization', accessToken ? accessToken : '');
       return headers;
     },
   }),
