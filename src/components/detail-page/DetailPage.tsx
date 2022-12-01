@@ -7,6 +7,8 @@ import { Packer } from 'docx';
 import { DocumentCreator } from './cv/cv-generator';
 import { experiences, education, skills, achievements } from './cv/cv-data';
 import { useGetUsersQuery } from '../../store/auth/auth.api';
+import Clock from '../../shared/clock/Clock';
+import withToggle from './HOC';
 
 export const DetailPage = (): any => {
   const data = moment('11-06-2021').format('w');
@@ -29,14 +31,25 @@ export const DetailPage = (): any => {
 
   console.log(users);
 
+  const ViewEditToggleExample = ({ toggle, toggleStatus, title }: any): any => (
+    <div>
+      {toggleStatus ? <input type="text" value={title} /> : <p>{title}</p>}
+      <button onClick={toggle}>{toggleStatus ? 'Cancel' : 'Edit'}</button>
+    </div>
+  );
+
+  const HOC = withToggle(ViewEditToggleExample);
+
   return (
     <div className="position-relative">
       <h1>Detail Page</h1>
       {data}
       <button onClick={() => console.log(moment().format('x'))}>check</button>
+      <Clock />
       <Button className="btn-docx btn-secondary py-2 px-4 ms-3 mb-3 rounded" onClick={createDocx}>
         Create DOCX
       </Button>
+      <HOC></HOC>
     </div>
   );
 };

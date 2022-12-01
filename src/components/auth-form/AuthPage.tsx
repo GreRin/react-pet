@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './AuthPage.scss';
 import { useHttp } from '../../hooks/http.hook';
@@ -20,6 +20,11 @@ export const AuthPage = (): any => {
   const [result, setResult] = useState<any>({});
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
+  const inputEl = useRef<any>(null);
+
+  useEffect(() => {
+    inputEl.current ? inputEl.current.focus() : null;
+  });
 
   useEffect(() => {
     setErr(customError);
@@ -112,7 +117,14 @@ export const AuthPage = (): any => {
               <div className="auth-form flex-column p-3">
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <Field className="input" id="email" name="email" placeholder="example@gmail.com" type="email" />
+                  <Field
+                    className="input"
+                    id="email"
+                    name="email"
+                    placeholder="example@gmail.com"
+                    type="email"
+                    innerRef={inputEl}
+                  />
                   {props.errors.email && props.touched.email ? (
                     <div className="notification">{props.errors.email}</div>
                   ) : null}
@@ -152,15 +164,28 @@ export const AuthPage = (): any => {
                     </a>
                   </div>
                 ) : (
-                  <Button
-                    className="mt-2"
-                    variant="warning"
-                    type="button"
-                    onClick={() => forgotPasswordHandler(props)}
-                    disabled={loading}
-                  >
-                    Restore password
-                  </Button>
+                  <>
+                    <Button
+                      className="mt-2"
+                      variant="warning"
+                      type="button"
+                      onClick={() => forgotPasswordHandler(props)}
+                      disabled={loading}
+                    >
+                      Restore password
+                    </Button>
+                    <Button
+                      className="mt-2 ms-3"
+                      variant="outline-secondary"
+                      type="button"
+                      onClick={() => {
+                        setForgotPWD(true);
+                      }}
+                      disabled={loading}
+                    >
+                      Back
+                    </Button>
+                  </>
                 )}
               </div>
             </Form>
