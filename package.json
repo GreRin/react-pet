@@ -11,7 +11,9 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "lint:prettier:fix": "prettier --write --ignore-unknown \"src/**/*.{tsx, ts}\"",
     "lint:eslint:fix": "npx eslint --ext src/**/*.tsx, --ext src/**/*.ts --quiet --fix",
-    "lint:fix": "npm run lint:scss:fix && npm run lint:prettier:fix && npm run lint:eslint:fix"
+    "lint:fix": "npm run lint:scss:fix && npm run lint:prettier:fix && npm run lint:eslint:fix",
+    "cypress:open": "npx cypress open",
+    "cypress:run": "npx cypress run"
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.0.1",
@@ -50,6 +52,7 @@
     "@types/html-docx-js": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
+    "cypress": "^11.2.0",
     "docx": "^7.6.0",
     "eslint": "^8.25.0",
     "eslint-config-airbnb": "^19.0.4",
