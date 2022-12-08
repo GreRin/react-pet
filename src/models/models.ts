@@ -147,3 +147,12 @@ export interface IRepo {
   watchers: number;
   default_branch: string;
 }
+
+export interface ICourse {
+  author: string;
+  description: string;
+  title: string;
+  topic: string;
+  url: string;
+  __typename: string;
+}
