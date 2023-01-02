@@ -1,0 +1,19 @@
+@import '../../styles/colors';
+
+.dropdown-body {
+  .option-default {
+    border: 1px solid $purple-50;
+  }
+
+  .options-list {
+    top: 105%;
+    border: 1px solid $purple-50;
+
+    .option {
+      &:hover {
+        color: $white;
+        background-color: $purple-50;
+      }
+    }
+  }
+}

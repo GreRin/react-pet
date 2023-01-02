@@ -1,5 +1,5 @@
 import { AlignmentType, Document, HeadingLevel, Packer, Paragraph, TabStopPosition, TabStopType, TextRun } from 'docx';
-import { IAchievements, IEducation, IExperiences, ISkills } from '../../../models/cv';
+import { IAchievements, IEducation, IExperiences, ISkills } from '../../../interfaces';
 const PHONE_NUMBER = '07534563401';
 const PROFILE_URL = 'https://www.linkedin.com/in/dolan1';
 const EMAIL = 'docx@docx.com';

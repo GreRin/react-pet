@@ -43,3 +43,12 @@ export interface IAchievements {
   issuer: string;
   name: string;
 }
+
+export interface IOption {
+  label: string;
+  value: string;
+}
+
+export interface IDropdownOptions {
+  options: IOption[];
+}
