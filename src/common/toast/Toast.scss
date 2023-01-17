@@ -5,6 +5,7 @@
   position: absolute;
   top: 2%;
   right: 2%;
+  z-index: 1000;
 
   &-success {
     @include toast-success;

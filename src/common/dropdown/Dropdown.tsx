@@ -27,7 +27,6 @@ const Dropdown = ({ options, value, onChange }: any): any => {
 
   const handleOptionClick = (opt: IOption): void => {
     setIsOpen(false);
-    console.log(opt);
     onChange(opt);
   };
 

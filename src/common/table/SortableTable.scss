@@ -1,0 +1,6 @@
+@import '../../styles/colors';
+
+.table-header__sorted:hover {
+  cursor: pointer;
+  background-color: $gray-10;
+}

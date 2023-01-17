@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './HomePage.scss';
 import { useLazyGetUsersRepoQuery, useSearchUsersQuery } from '../../store/github/github.api';
 import { useDebounce } from '../../hooks/debounce';
 import RepoCard from './repo-card/RepoCard';
 import Dropdown from '../../common/dropdown/Dropdown';
 import { IOption } from '../../interfaces';
+import ToastNotification from '../../common/toast/Toast';
+import { Button } from 'react-bootstrap';
 
 const Home = (): any => {
   const [search, setSearch] = useState('react');
@@ -13,6 +15,7 @@ const Home = (): any => {
   const [dropdown, setDropdown] = useState(false);
   const { isLoading, isError, data } = useSearchUsersQuery(search);
   const [fetchRepos, { isLoading: areReposLoading, data: repos }] = useLazyGetUsersRepoQuery();
+  const toastRef = useRef();
 
   useEffect(() => {
     fetchRepos('angular');
@@ -40,7 +43,16 @@ const Home = (): any => {
         <aside className="aside">
           {isError && <p className="text-center bg-danger">Something went wrong ...</p>}
           <Dropdown options={options} value={selection} onChange={handleSelect} />
-
+          <Button
+            className="m-3"
+            onClick={() => {
+              // @ts-ignore
+              toastRef.current.show();
+            }}
+          >
+            Show Modal
+          </Button>
+          <ToastNotification ref={toastRef} messageData="Hello my dear friend!"></ToastNotification>
           <div className="relative w-auto m-3">
             <input
               type="text"

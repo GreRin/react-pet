@@ -3,7 +3,7 @@ import './Toast.scss';
 import { ForwardedRef, forwardRef, useContext, useImperativeHandle, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
-const ToastNotification = forwardRef(({ ...props }: any, ref: ForwardedRef<any>): any => {
+const ToastNotification = ({ ...props }: any, ref: ForwardedRef<any>): any => {
   const [showToast, setShowToast] = useState(false);
   const [style, setStyle] = useState('');
   const auth = useContext(AuthContext);
@@ -19,7 +19,7 @@ const ToastNotification = forwardRef(({ ...props }: any, ref: ForwardedRef<any>)
         }, 3000);
       },
     }),
-    [auth, props]
+    [props]
   );
 
   const toggleShowToast = (): void => setShowToast(false);
@@ -32,6 +32,6 @@ const ToastNotification = forwardRef(({ ...props }: any, ref: ForwardedRef<any>)
       <Toast.Body>{props.messageData}</Toast.Body>
     </Toast>
   );
-});
+};
 
-export default ToastNotification;
+export default forwardRef(ToastNotification);
