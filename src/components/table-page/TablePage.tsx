@@ -2,6 +2,7 @@ import React from 'react';
 import { useTableData } from '../../hooks/tableData.hook';
 import { IBreed } from '../../interfaces';
 import SortableTable from '../../common/table/SortableTable';
+import Counter from '../counter/Counter';
 
 export const TablePage = (): any => {
   const { resp } = useTableData();
@@ -33,6 +34,7 @@ export const TablePage = (): any => {
 
   return (
     <div className="position-relative">
+      <Counter initialCount={10} />
       <SortableTable data={resp} config={config} />
     </div>
   );
