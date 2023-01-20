@@ -5,6 +5,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { githubReducer } from './github/github.slice';
 import { themeReducer } from '../features/counter/theme-slice';
 import { dogApiSlice } from '../features/dog/dog-api-slice';
+import { songReducer } from './songs/songs.slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     theme: themeReducer,
     [dogApiSlice.reducerPath]: dogApiSlice.reducer,
+    songs: songReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(githubApi.middleware, authApi.middleware, dogApiSlice.middleware),

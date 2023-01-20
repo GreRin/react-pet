@@ -7,7 +7,7 @@ export const Table = ({ data, config }: any): any => {
       return <Fragment key={column.id}>{column.header()}</Fragment>;
     }
     return (
-      <th scope="col" key={column.label}>
+      <th scope="col" key={column.id}>
         {column.label}
       </th>
     );

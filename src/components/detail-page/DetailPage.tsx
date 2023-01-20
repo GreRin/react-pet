@@ -9,6 +9,8 @@ import { experiences, education, skills, achievements } from './cv/cv-data';
 import { useGetUsersQuery } from '../../store/auth/auth.api';
 import Clock from '../../shared/clock/Clock';
 import withToggle from './HOC';
+import MoviePlayList from '../movie-playlist/MoviePlaylist';
+import { useActions } from '../../hooks/actions';
 
 export const DetailPage = (): any => {
   const data = moment('11-06-2021').format('w');
@@ -31,6 +33,8 @@ export const DetailPage = (): any => {
 
   console.log(users);
 
+  const { reset } = useActions();
+
   const ViewEditToggleExample = ({ toggle, toggleStatus, title }: any): any => (
     <div>
       {toggleStatus ? <input type="text" value={title} /> : <p>{title}</p>}
@@ -39,6 +43,10 @@ export const DetailPage = (): any => {
   );
 
   const HOC = withToggle(ViewEditToggleExample);
+
+  const handleResetClick = (): void => {
+    reset();
+  };
 
   return (
     <div className="position-relative">
@@ -50,6 +58,13 @@ export const DetailPage = (): any => {
         Create DOCX
       </Button>
       <HOC></HOC>
+      <br />
+      <div className="redux-tool-kit d-flex flex-column">
+        <Button className="btn btn-warning ms-3" onClick={handleResetClick}>
+          Reset Both Playlist
+        </Button>
+        <MoviePlayList />
+      </div>
     </div>
   );
 };

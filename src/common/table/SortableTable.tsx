@@ -56,7 +56,7 @@ export const SortableTable = (props: any): any => {
         >
           <div className="d-flex align-items-center">
             {getIcons(column.label, sortBy, sortOrder)}
-            {column.label} IS SORTABLE
+            {column.label}
           </div>
         </th>
       ),
