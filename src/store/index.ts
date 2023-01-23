@@ -6,6 +6,8 @@ import { githubReducer } from './github/github.slice';
 import { themeReducer } from '../features/counter/theme-slice';
 import { dogApiSlice } from '../features/dog/dog-api-slice';
 import { songReducer } from './songs/songs.slice';
+import { carsReducer } from './cars/cars.slice';
+import { formReducer } from './cars/form.slice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +17,8 @@ export const store = configureStore({
     theme: themeReducer,
     [dogApiSlice.reducerPath]: dogApiSlice.reducer,
     songs: songReducer,
+    cars: carsReducer,
+    form: formReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(githubApi.middleware, authApi.middleware, dogApiSlice.middleware),

@@ -9,6 +9,7 @@ import Home from './components/home-page/HomePage';
 import { PdfPage } from './components/pdf-page/PdfPage';
 import { ErrorPage } from './components/ErrorPage';
 import TablePage from './components/table-page/TablePage';
+import CarsPage from './components/cars/CarsPage';
 
 export const useRoutes = (isAuthenticated: any): any => {
   if (isAuthenticated) {
@@ -21,6 +22,7 @@ export const useRoutes = (isAuthenticated: any): any => {
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/pdf" element={<PdfPage />} />
           <Route path="/table" element={<TablePage />} />
+          <Route path="/cars" element={<CarsPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/redirect" element={<Navigate to="/" />} />
           <Route path="*" element={<ErrorPage />} />

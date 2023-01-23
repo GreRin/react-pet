@@ -55,6 +55,9 @@ function NavMenu(): any {
         <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/table">
           Table
         </Link>
+        <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/cars">
+          Cars
+        </Link>
       </div>
       <div>
         <Button className={!theme ? 'btn-light' : 'btn-purple'} onClick={changeThemeHandler}>
