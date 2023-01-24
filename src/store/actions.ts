@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from '@reduxjs/toolkit';
-import { githubActions } from '../store/github/github.slice';
+import { githubActions } from './github/github.slice';
 import { themeActions } from '../features/counter/theme-slice';
-import { songAction } from '../store/songs/songs.slice';
-import { carsAction } from '../store/cars/cars.slice';
-import { formActions } from '../store/cars/form.slice';
+import { songAction } from './songs/songs.slice';
+import { carsAction } from './cars/cars.slice';
+import { formActions } from './cars/form.slice';
+import { userAction } from './users/user.slice';
 
 const actions = {
   ...githubActions,
@@ -12,6 +13,7 @@ const actions = {
   ...songAction,
   ...carsAction,
   ...formActions,
+  ...userAction,
 };
 
 export const useActions = (): any => {

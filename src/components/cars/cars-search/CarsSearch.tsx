@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useActions } from '../../../hooks/actions';
+import { useActions } from '../../../store/actions';
 
 function CarSearch(): JSX.Element {
   const { changeSearchTerm } = useActions();

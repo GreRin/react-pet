@@ -8,6 +8,8 @@ import { dogApiSlice } from '../features/dog/dog-api-slice';
 import { songReducer } from './songs/songs.slice';
 import { carsReducer } from './cars/cars.slice';
 import { formReducer } from './cars/form.slice';
+import { userReducer } from './users/user.slice';
+import { usersApi } from './users/user.api';
 
 export const store = configureStore({
   reducer: {
@@ -19,9 +21,16 @@ export const store = configureStore({
     songs: songReducer,
     cars: carsReducer,
     form: formReducer,
+    users: userReducer,
+    [usersApi.reducerPath]: usersApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(githubApi.middleware, authApi.middleware, dogApiSlice.middleware),
+    getDefaultMiddleware().concat(
+      githubApi.middleware,
+      authApi.middleware,
+      dogApiSlice.middleware,
+      usersApi.middleware
+    ),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -4,13 +4,18 @@ import { ILogin } from '../../models/models';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000/api/',
+    baseUrl: 'http://localhost:3000/api/',
     credentials: 'include',
     prepareHeaders: (headers) => {
       const accessToken = localStorage.getItem('accessToken') || '';
       console.log(document.cookie);
-      headers.set('cookies', document.cookie);
-      headers.set('authorization', accessToken ? accessToken : '');
+      if (accessToken) {
+        headers.set('cookies', document.cookie);
+        headers.set('authorization', accessToken ? accessToken : '');
+      }
+      headers.set('Access-Control-Allow-Credentials', 'false');
+      headers.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+      headers.set('Content-Type', 'application/json');
       return headers;
     },
   }),

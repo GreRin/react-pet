@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useActions } from '../../../hooks/actions';
+import { useActions } from '../../../store/actions';
 
 function CarForm(): JSX.Element {
   const { addCar, changeName, changeCost } = useActions();

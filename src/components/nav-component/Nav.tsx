@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import './Nav.scss';
 import { useAppSelector } from '../../hooks/redux';
-import { useActions } from '../../hooks/actions';
+import { useActions } from '../../store/actions';
 import { useHttp } from '../../hooks/http.hook';
 import { toast } from 'react-toastify';
 
@@ -57,6 +57,9 @@ function NavMenu(): any {
         </Link>
         <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/cars">
           Cars
+        </Link>
+        <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/media">
+          Media
         </Link>
       </div>
       <div>

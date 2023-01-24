@@ -156,3 +156,11 @@ export interface ICourse {
   url: string;
   __typename: string;
 }
+
+export interface IUserPr {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  link: [];
+}

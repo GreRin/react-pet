@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useActions } from '../../../hooks/actions';
+import { useActions } from '../../../store/actions';
 import { ICar } from '../../../interfaces';
 
 function CarList(): JSX.Element {

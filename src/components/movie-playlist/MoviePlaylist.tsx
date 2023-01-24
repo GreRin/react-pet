@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/en';
 import './MoviePlayList.scss';
 import { Button } from 'react-bootstrap';
-import { useActions } from '../../hooks/actions';
+import { useActions } from '../../store/actions';
 import { useSelector } from 'react-redux';
 
 function SongsPlaylist(): JSX.Element {

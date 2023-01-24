@@ -10,14 +10,14 @@ import { useGetUsersQuery } from '../../store/auth/auth.api';
 import Clock from '../../shared/clock/Clock';
 import withToggle from './HOC';
 import MoviePlayList from '../movie-playlist/MoviePlaylist';
-import { useActions } from '../../hooks/actions';
+import { useActions } from '../../store/actions';
 
 export const DetailPage = (): any => {
   const data = moment('11-06-2021').format('w');
   const [week, year] = [20, 2021];
-  console.log(moment(`${week} ${year}`, 'WW YYYY').format('ww'));
+  // console.log(moment(`${week} ${year}`, 'WW YYYY').format('ww'));
   const n = moment('20 2021', 'WW YYYY').startOf('isoWeek').format('DD MMM YYYY');
-  console.log(moment(n).add(1, 'w').format('DD MMM YYYY'));
+  // console.log(moment(n).add(1, 'w').format('DD MMM YYYY'));
 
   const createDocx = async (): Promise<any> => {
     const documentCreator = new DocumentCreator();

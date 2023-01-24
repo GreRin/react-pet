@@ -10,6 +10,7 @@ import { PdfPage } from './components/pdf-page/PdfPage';
 import { ErrorPage } from './components/ErrorPage';
 import TablePage from './components/table-page/TablePage';
 import CarsPage from './components/cars/CarsPage';
+import MediaPage from './components/media/MediaPage';
 
 export const useRoutes = (isAuthenticated: any): any => {
   if (isAuthenticated) {
@@ -23,6 +24,7 @@ export const useRoutes = (isAuthenticated: any): any => {
           <Route path="/pdf" element={<PdfPage />} />
           <Route path="/table" element={<TablePage />} />
           <Route path="/cars" element={<CarsPage />} />
+          <Route path="/media" element={<MediaPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/redirect" element={<Navigate to="/" />} />
           <Route path="*" element={<ErrorPage />} />

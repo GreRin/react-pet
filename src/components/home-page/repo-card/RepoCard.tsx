@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './RepoCard.scss';
 import { IRepo } from '../../../models/models';
 import { Button } from 'react-bootstrap';
-import { useActions } from '../../../hooks/actions';
+import { useActions } from '../../../store/actions';
 import { useAppSelector } from '../../../hooks/redux';
 
 const RepoCard = ({ repo }: { repo: IRepo }): any => {
