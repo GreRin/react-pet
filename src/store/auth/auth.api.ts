@@ -8,7 +8,6 @@ export const authApi = createApi({
     credentials: 'include',
     prepareHeaders: (headers) => {
       const accessToken = localStorage.getItem('accessToken') || '';
-      console.log(document.cookie);
       if (accessToken) {
         headers.set('cookies', document.cookie);
         headers.set('authorization', accessToken ? accessToken : '');
@@ -31,13 +30,7 @@ export const authApi = createApi({
         url: `signup`,
       }),
     }),
-    getUsers: build.query<any, any>({
-      query: () => ({
-        url: `users`,
-        method: 'GET',
-      }),
-    }),
   }),
 });
 
-export const { useLoginQuery, useSignupQuery, useGetUsersQuery } = authApi;
+export const { useLoginQuery, useSignupQuery } = authApi;

@@ -6,7 +6,6 @@ import moment from 'moment';
 import { Packer } from 'docx';
 import { DocumentCreator } from './cv/cv-generator';
 import { experiences, education, skills, achievements } from './cv/cv-data';
-import { useGetUsersQuery } from '../../store/auth/auth.api';
 import Clock from '../../shared/clock/Clock';
 import withToggle from './HOC';
 import MoviePlayList from '../movie-playlist/MoviePlaylist';
@@ -28,10 +27,6 @@ export const DetailPage = (): any => {
       console.log('Document created successfully');
     });
   };
-
-  const users = useGetUsersQuery('');
-
-  console.log(users);
 
   const { reset } = useActions();
 

@@ -4,9 +4,10 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { environment } from './environments/environment';
 
 const client = new ApolloClient({
-  uri: process.env.SERVER_URL || 'http://localhost:4000/api/graphql',
+  uri: `${environment.baseUrl}/graphql`,
   cache: new InMemoryCache(),
 });
 

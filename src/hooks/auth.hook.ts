@@ -38,7 +38,7 @@ export const useAuth = (): any => {
     if (accessToken) {
       login(id, token, message, status);
     }
-  }, [login]);
+  }, []);
 
   return { login, logout, accessToken, userId, messageData, statusData };
 };

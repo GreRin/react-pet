@@ -8,18 +8,8 @@ interface IButton {
   danger: string;
 }
 
-function Button({
-  children,
-  primary,
-  secondary,
-  success,
-  warning,
-  danger,
-  outline,
-  rounded,
-  ...rest
-}: any): JSX.Element {
-  const classes = className(rest.className, 'flex items-center px-3 py-1.5 border', {
+function Button({ children, primary, secondary, success, warning, danger, outline, rounded, ...rest }: any): any {
+  const classes = className(rest.className, 'd-flex align-items-center px-3 py-2 border', {
     'border-blue-500 bg-blue-500 text-white': primary,
     'border-gray-900 bg-gray-900 text-white': secondary,
     'border-green-500 bg-green-500 text-white': success,

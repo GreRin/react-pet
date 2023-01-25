@@ -2,8 +2,7 @@ import UserList from '../user-list/UserList';
 
 const MediaPage = (): JSX.Element => {
   return (
-    <div>
-      Media
+    <div className="h-100">
       <UserList />
     </div>
   );

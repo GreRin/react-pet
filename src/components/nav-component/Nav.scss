@@ -4,6 +4,7 @@
   display: flex;
   justify-content: flex-start;
   background-color: $gray-25;
+  position: absolute;
 
   &__link {
     text-decoration: none;

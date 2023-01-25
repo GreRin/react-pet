@@ -34,7 +34,9 @@ function NavMenu(): any {
 
   return (
     <nav
-      className={'navbar justify-content-between p-3 ' + (theme ? 'navbar-light bg-light' : 'navbar-light bg-purple')}
+      className={
+        'navbar w-100 justify-content-between p-3 ' + (theme ? 'navbar-light bg-light' : 'navbar-light bg-purple')
+      }
     >
       <div>
         <Link className={'navbar__link m-3 ' + (theme ? 'navbar__link-dark' : 'navbar__link-light')} to="/">
