@@ -1,23 +1,14 @@
-import { Form } from 'formik';
-import React, { useState } from 'react';
-import ModalWithForm from './ModalWithForm';
+import React, { memo } from 'react';
+import { Modal } from 'react-bootstrap';
+import 'reactjs-popup/dist/index.css';
+import FormModal from './Form-modal';
 
-const AddUserForm = ({ refModal }: any): JSX.Element => {
-  const [open, setOpen] = useState(false);
-
+const AddUserForm = ({ isOpen, handleClose }: any): JSX.Element => {
   return (
-    <div>
-      <ModalWithForm isOpen={open} refModal={refModal} handleClose={() => setOpen(false)} />
-
-      <button className="button-modal" type="button" onClick={() => setOpen(true)}>
-        Modal
-      </button>
-
-      <button className="button" type="submit">
-        Send
-      </button>
-    </div>
+    <Modal show={isOpen} onHide={handleClose} centered>
+      <FormModal onHide={handleClose} />
+    </Modal>
   );
 };
 
-export default AddUserForm;
+export default memo(AddUserForm);

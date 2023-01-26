@@ -5,9 +5,6 @@ import { AppDispatch } from '../../store';
 import { IRequestStateBase } from '../../store/users/user.slice';
 import Skeleton from '../skeleton/Sceleton';
 import { Button } from 'react-bootstrap';
-import { Field, Form, Formik, FormikHelpers } from 'formik';
-import { IAuth } from '../auth-form/interface';
-import * as Yup from 'yup';
 import AddUserForm from '../../common/forms/AddUserForm';
 
 const UserList = (): JSX.Element => {
@@ -15,15 +12,11 @@ const UserList = (): JSX.Element => {
   const { isLoading, data, error } = useSelector((state: any): IRequestStateBase => {
     return state.users;
   });
-  const refModal = useRef();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-
-  const handleUserAdd = (): void => {
-    // dispatch(addUser());
-  };
 
   if (isLoading) {
     return <Skeleton times={6} className="w-100" />;
@@ -42,17 +35,19 @@ const UserList = (): JSX.Element => {
   });
 
   return (
-    <div className="m-3 position-relative">
-      <div className="d-flex justify-content-between py-3">
-        <h1 className="m-0">Users</h1>
-        <Button className="btn btn-warning" data-toggle="modal" data-target="#addUserModal">
-          + Add User
-        </Button>
-      </div>
-      {data && renderUsers}
+    <>
+      <div className="m-3 position-relative">
+        <div className="d-flex justify-content-between py-3">
+          <h1 className="m-0">Users</h1>
+          <Button className="btn btn-warning" type="button" onClick={() => setOpen(true)}>
+            + Add User
+          </Button>
+        </div>
+        {data && renderUsers}
 
-      <AddUserForm refModal={refModal} />
-    </div>
+        <AddUserForm isOpen={open} handleClose={() => setOpen(false)} />
+      </div>
+    </>
   );
 };
 
