@@ -13,7 +13,7 @@ const AuthSchema = Yup.object().shape({
   password: Yup.string().min(10, 'Too Short!').max(50, 'Too Long!').required('Required'),
 });
 
-const FormModal = ({ onHide }: any): any => {
+const FormModal = ({ onHide, handleState }: any): any => {
   const [form, setForm] = useState<IAuth>({
     email: '',
     password: '',
@@ -22,8 +22,8 @@ const FormModal = ({ onHide }: any): any => {
 
   const addUserHandler = async (props: any): Promise<void> => {
     try {
-      console.log(props);
       dispatch(addUser({ props }));
+      handleState(props);
     } catch (error) {
       toast.error(error.message, { position: 'bottom-right' });
     }

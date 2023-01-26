@@ -3,9 +3,9 @@ import { fetchUsers } from '../thunks/fetchUsers';
 import { addUser } from '../thunks/addUser';
 
 export interface IRequestStateBase {
-  data: any[];
+  data: any;
   isLoading: boolean;
-  error: any[];
+  error: any;
 }
 
 const userSlice = createSlice({
@@ -64,16 +64,10 @@ const userSlice = createSlice({
         state.isLoading = true;
       }
     );
-    builder.addCase(
-      addUser.fulfilled,
-      (
-        state: IRequestStateBase,
-        action: PayloadAction<any[], string, { arg: void; requestId: string; requestStatus: 'fulfilled' }, never>
-      ) => {
-        state.isLoading = false;
-        state.data.push(action.payload);
-      }
-    );
+    builder.addCase(addUser.fulfilled, (state: IRequestStateBase, action: any) => {
+      state.isLoading = false;
+      state.data.push(action.payload);
+    });
     builder.addCase(
       addUser.rejected,
       (

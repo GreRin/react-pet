@@ -5,7 +5,7 @@ import NavMenu from './nav-component/Nav';
 
 const SharedLayout = (): any => {
   return (
-    <div className="shared-layout position-relative w-100 h-100">
+    <div className="position-relative w-100 h-100">
       <NavMenu />
       <div className="outlet-body">
         <Outlet />

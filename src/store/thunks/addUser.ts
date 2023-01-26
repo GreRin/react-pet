@@ -3,10 +3,9 @@ import { environment } from '../../environments/environment';
 import axios from 'axios';
 
 const addUser = createAsyncThunk('users/add', async ({ props }: any) => {
-  console.log(props);
-  const responce = await axios.post(`${environment.baseUrl}/users`, props);
+  const response = await axios.post(`${environment.baseUrl}/users`, props);
 
-  return responce.data;
+  return response.data;
 });
 
 export { addUser };
