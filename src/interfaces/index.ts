@@ -113,3 +113,11 @@ export interface IAlbum {
   title: string;
   foto: [];
 }
+
+export interface IPhoto {
+  _id: string;
+  userId: string;
+  albumId: string;
+  title: string;
+  data: string;
+}

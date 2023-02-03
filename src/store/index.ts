@@ -11,6 +11,7 @@ import { formReducer } from './cars/form.slice';
 import { userReducer } from './users/user.slice';
 import { usersApi } from './users/user.api';
 import { albumsApi } from './albums/albums.api';
+import { photosApi } from './fotos/fotos.api';
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     users: userReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [albumsApi.reducerPath]: albumsApi.reducer,
+    [photosApi.reducerPath]: photosApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -32,7 +34,8 @@ export const store = configureStore({
       authApi.middleware,
       dogApiSlice.middleware,
       usersApi.middleware,
-      albumsApi.middleware
+      albumsApi.middleware,
+      photosApi.middleware
     ),
 });
 

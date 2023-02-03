@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import './AlbumListItem.scss';
+import PhotoList from '../photo-list/PhotoList';
 
 const AlbumListItem = ({ album, user }: any): JSX.Element => {
   const [deleteAlbum, removeAlbumResults] = useDeleteAlbumMutation();
@@ -32,7 +33,7 @@ const AlbumListItem = ({ album, user }: any): JSX.Element => {
 
   return (
     <ExpandablePanel key={album.id} header={header}>
-      List of photos in the album
+      <PhotoList album={album} />
     </ExpandablePanel>
   );
 };

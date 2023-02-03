@@ -28,7 +28,6 @@ export const albumsApi = createApi({
       }),
       deleteAlbum: build.mutation({
         invalidatesTags: (result, error, album) => {
-          console.log(album);
           return [{ type: 'Album', _id: album.albumId }];
         },
         query(data: any): BaseQueryArg<any> {
@@ -46,7 +45,7 @@ export const albumsApi = createApi({
           tags.push({ type: 'UsersAlbums', userId: user.id });
           return tags;
         },
-        query(user: any): BaseQueryArg<any> {
+        query(user: IUser): BaseQueryArg<any> {
           return {
             url: `/albums/${user.id}`,
             params: {
