@@ -10,6 +10,7 @@ import { carsReducer } from './cars/cars.slice';
 import { formReducer } from './cars/form.slice';
 import { userReducer } from './users/user.slice';
 import { usersApi } from './users/user.api';
+import { albumsApi } from './albums/albums.api';
 
 export const store = configureStore({
   reducer: {
@@ -23,13 +24,15 @@ export const store = configureStore({
     form: formReducer,
     users: userReducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    [albumsApi.reducerPath]: albumsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       githubApi.middleware,
       authApi.middleware,
       dogApiSlice.middleware,
-      usersApi.middleware
+      usersApi.middleware,
+      albumsApi.middleware
     ),
 });
 

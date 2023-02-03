@@ -97,3 +97,19 @@ export interface IForm {
   name: string;
   cost: number;
 }
+
+export interface IUser {
+  email: string;
+  id: string;
+  albumsList: IAlbum[];
+  password: string;
+  __v: number;
+  _id: string;
+}
+
+export interface IAlbum {
+  _id: string;
+  userId: string;
+  title: string;
+  foto: [];
+}

@@ -11,14 +11,18 @@ export const ErrorPage = (): any => {
   };
 
   return (
-    <div>
-      <h2>404</h2>
-      <p>Page not found</p>
-      <Link to="/">
-        <Button variant="primary" onClick={navigateHandler}>
-          Back to the main page
-        </Button>
-      </Link>
+    <div className="d-flex align-items-center h-100">
+      <div className="col-6 offset-3">
+        <div className="card card-body align-items-center">
+          <h2>404</h2>
+          <p>Page not found</p>
+          <Link to="/">
+            <Button variant="primary" onClick={navigateHandler}>
+              Back to the main page
+            </Button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

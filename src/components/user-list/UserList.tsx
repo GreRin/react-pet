@@ -1,32 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchUsers } from '../../store/thunks/fetchUsers';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../store';
+import { useSelector } from 'react-redux';
 import { IRequestStateBase } from '../../store/users/user.slice';
 import Skeleton from '../skeleton/Sceleton';
 import { Button } from 'react-bootstrap';
 import AddUserForm from '../../common/forms/AddUserForm';
-import { AsyncThunkAction } from '@reduxjs/toolkit';
-
-const useThunk = (thunk: AsyncThunkAction<any, void, {}>): any => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
-
-  const runThunk = useCallback(() => {
-    setIsLoading(true);
-    dispatch(thunk)
-      .unwrap()
-      .catch((err: any) => {
-        setError(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [dispatch, thunk]);
-
-  return [runThunk, isLoading, error];
-};
+import useThunk from '../../hooks/thunk.hook';
+import UsersListItem from './UsersListItem';
+import { IUser } from '../../interfaces';
 
 const UserList = (): JSX.Element => {
   const [doFetchUsers, isLoadingUsers, loadingUsersError] = useThunk(fetchUsers());
@@ -43,18 +24,16 @@ const UserList = (): JSX.Element => {
   const handleState = (): void => {
     doFetchUsers();
   };
-
+  let content;
   if (isLoadingUsers) {
-    return <Skeleton times={data.length} className="w-100" />;
+    content = <Skeleton times={data.length} className="w-100" />;
+  } else if (loadingUsersError) {
+    content = <div>Error fetching data ... </div>;
+  } else {
+    content = data.map((user: IUser) => {
+      return <UsersListItem key={user.id} user={user} handleState={handleState} />;
+    });
   }
-
-  const renderUsers = data.map((user: any) => {
-    return (
-      <div key={user.id} className="mb-2 w-100 card card-body border-3 rounded-3">
-        <div className="d-flex p-2 justify-content-between align-items-center">{user.email}</div>
-      </div>
-    );
-  });
 
   return (
     <>
@@ -65,7 +44,7 @@ const UserList = (): JSX.Element => {
             + Add User
           </Button>
         </div>
-        {data && renderUsers}
+        {data && content}
 
         <AddUserForm isOpen={open} handleClose={() => setOpen(false)} handleState={handleState} />
       </div>

@@ -1,0 +1,14 @@
+@import '../../styles/colors';
+
+.user-card {
+  border: 1px solid $gray-104;
+
+  .expand-icon {
+    cursor: pointer;
+  }
+
+  .delete-icon-btn {
+    border-radius: 50%;
+    width: 40px;
+  }
+}

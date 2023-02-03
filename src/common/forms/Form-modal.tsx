@@ -70,7 +70,7 @@ const FormModal = ({ onHide, handleState }: any): any => {
               <div className="d-flex justify-content-between btn-group mt-3 w-100">
                 <div>
                   <Button className="me-2" variant="warning" type="submit" disabled={false}>
-                    Log In
+                    Add user
                   </Button>
                   <Button variant="secondary" type="button" onClick={() => onHide()} disabled={false}>
                     Close
