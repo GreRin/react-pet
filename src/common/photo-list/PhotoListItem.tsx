@@ -3,11 +3,12 @@ import './PhotoListItem.scss';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 import { useDeletePhotoMutation } from '../../store/fotos/photos.api';
 
-const PhotoListItem = ({ photo }: any): JSX.Element => {
+const PhotoListItem = ({ photo, albumId }: any): JSX.Element => {
   const [removePhoto, result] = useDeletePhotoMutation();
 
   const handleRemovePhoto = (): void => {
-    removePhoto(photo);
+    console.log(photo);
+    removePhoto({ photo, albumId });
   };
 
   return (

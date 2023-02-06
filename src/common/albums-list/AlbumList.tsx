@@ -20,7 +20,7 @@ const AlbumsList = ({ user }: any): JSX.Element => {
     content = <div>Error loading albums.</div>;
   } else {
     content = data.map((album: IAlbum) => {
-      return <AlbumListItem album={album} user={user} />;
+      return <AlbumListItem key={album._id} album={album} user={user} />;
     });
   }
 

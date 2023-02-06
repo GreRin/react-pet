@@ -20,7 +20,7 @@ const PhotoList = ({ album }: any): JSX.Element => {
     content = <div>Error loading photos.</div>;
   } else {
     content = data[0].foto.map((photo: IPhoto) => {
-      return <PhotoListItem key={photo._id} photo={photo} />;
+      return <PhotoListItem key={photo._id} photo={photo} albumId={album._id} />;
     });
   }
 
