@@ -3,7 +3,7 @@ import { useAddPhotoMutation, useFetchPhotosQuery } from '../../store/fotos/phot
 import { Button } from 'react-bootstrap';
 import React from 'react';
 import Skeleton from '../../components/skeleton/Sceleton';
-import { IAlbum, IPhoto } from '../../interfaces';
+import { IPhoto } from '../../interfaces';
 
 const PhotoList = ({ album }: any): JSX.Element => {
   const { data, error, isFetching } = useFetchPhotosQuery(album);

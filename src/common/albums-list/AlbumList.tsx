@@ -1,4 +1,4 @@
-import { useAddAlbumMutation, useDeleteAlbumMutation, useFetchAlbumsQuery } from '../../store/albums/albums.api';
+import { useAddAlbumMutation, useFetchAlbumsQuery } from '../../store/albums/albums.api';
 import Skeleton from '../../components/skeleton/Sceleton';
 import { IAlbum } from '../../interfaces';
 import { Button } from 'react-bootstrap';

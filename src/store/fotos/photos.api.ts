@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { IAlbum, IPhoto } from '../../interfaces';
 import { BaseQueryArg } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import { faker } from '@faker-js/faker/locale/en';
-import { resultKeyNameFromField } from '@apollo/client/utilities';
 
 export const photosApi = createApi({
   reducerPath: 'photos',
