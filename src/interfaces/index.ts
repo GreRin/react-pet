@@ -111,7 +111,7 @@ export interface IAlbum {
   _id: string;
   userId: string;
   title: string;
-  foto: [];
+  foto: IPhoto[];
 }
 
 export interface IPhoto {

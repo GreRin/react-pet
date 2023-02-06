@@ -1,0 +1,16 @@
+@import '../../styles/colors';
+
+.photo {
+  cursor: pointer;
+
+  .delete-btn {
+    opacity: 0;
+  }
+
+  &:hover {
+    .delete-btn {
+      background-color: $gray-50;
+      opacity: 0.8;
+    }
+  }
+}

@@ -11,7 +11,7 @@ import { formReducer } from './cars/form.slice';
 import { userReducer } from './users/user.slice';
 import { usersApi } from './users/user.api';
 import { albumsApi } from './albums/albums.api';
-import { photosApi } from './fotos/fotos.api';
+import { photosApi } from './fotos/photos.api';
 
 export const store = configureStore({
   reducer: {

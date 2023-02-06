@@ -4,31 +4,29 @@ import { BaseQueryArg } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import { faker } from '@faker-js/faker/locale/en';
 
 export const photosApi = createApi({
-  reducerPath: 'fotos',
+  reducerPath: 'photos',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'localhost://4000/api',
+    baseUrl: 'http://localhost:4000/api/',
   }),
   endpoints(build) {
     return {
       fetchPhotos: build.query({
         query(album: IAlbum): BaseQueryArg<any> {
           return {
-            url: '/photos',
-            params: {
-              albumId: album._id,
-            },
+            url: `/photos/${album._id}`,
           };
         },
       }),
       addPhoto: build.mutation({
-        query(data: { userId: string; albumId: string; photo: IPhoto }) {
+        query(data: { _id: string; photo: IPhoto }) {
+          console.log(data);
           return {
-            url: '/photo',
+            url: '/photos',
             method: 'POST',
             body: {
-              userId: data.userId,
-              albumId: data.albumId,
-              url: faker.image.abstract(150, 150, true),
+              albumId: data._id,
+              title: faker.name.jobType(),
+              ref: faker.image.abstract(150, 150, true),
             },
           };
         },
