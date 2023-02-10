@@ -1,6 +1,7 @@
 import { request, gql } from 'graphql-request';
+import { environment } from '../environments/environment';
 
-const GRAPHQL_URL = 'http://localhost:4000/api/graphql';
+const GRAPHQL_URL = `${environment.baseUrl}/graphql`;
 
 export const getCourses = async (): Promise<any> => {
   const query = gql`
@@ -13,8 +14,8 @@ export const getCourses = async (): Promise<any> => {
     }
   `;
 
-  const data = await request(GRAPHQL_URL, query);
-  return data.getAllCourses;
+  const { getAllCourses } = await request(GRAPHQL_URL, query);
+  return getAllCourses;
 };
 
 export const getCourseById = async (id: number): Promise<any> => {
@@ -31,6 +32,6 @@ export const getCourseById = async (id: number): Promise<any> => {
   `;
 
   const variables = { id };
-  const data = await request(GRAPHQL_URL, query, variables);
-  return data.course;
+  const { course } = await request(GRAPHQL_URL, query, variables);
+  return course;
 };
