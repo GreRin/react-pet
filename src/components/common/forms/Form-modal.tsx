@@ -1,12 +1,12 @@
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { memo, useState } from 'react';
 import * as Yup from 'yup';
-import { IAuth } from '../../components/auth-form/interface';
+import { IAuth } from '../../../interfaces';
 import { toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../../store/thunks/addUser';
-import { AppDispatch } from '../../store';
+import { addUser } from '../../../store/thunks/addUser';
+import { AppDispatch } from '../../../store';
 
 const AuthSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),

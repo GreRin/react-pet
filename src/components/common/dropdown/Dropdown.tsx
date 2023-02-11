@@ -1,4 +1,4 @@
-import { IOption } from '../../interfaces';
+import { IOption } from '../../../interfaces';
 import { useEffect, useState, useRef } from 'react';
 import './Dropdown.scss';
 import { GoChevronDown } from 'react-icons/go';

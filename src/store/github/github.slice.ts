@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LS_FAV_KEY } from '../../constants/state-constants';
+import { LS_FAV_KEY } from '../../constants/constants';
 
 interface GithubState {
   favourites: string[];

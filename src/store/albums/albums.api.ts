@@ -7,6 +7,7 @@ export const albumsApi = createApi({
   reducerPath: 'albumsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:4000/api/',
+    credentials: 'include',
   }),
   tagTypes: ['UsersAlbums', 'Album'],
   endpoints(build) {

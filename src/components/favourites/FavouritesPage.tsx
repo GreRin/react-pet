@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/redux';
 import { getCourseById, getCourses } from '../../query/Courses';
 import CourseCard from './CourseCard';
-import { getAlbums } from '../../query/Albums';
+import { deleteAlbums, getAlbums } from '../../query/Albums';
 
 export const FavouritesPage = (): any => {
   const { favourites } = useAppSelector((state) => state.github);
@@ -25,6 +25,12 @@ export const FavouritesPage = (): any => {
     getAlbums('abf112c7-aab9-4310-aafd-f0ff7ac148a9').then((data) => {
       setAlbums(data);
       console.log(albums);
+    });
+  }, []);
+
+  useEffect(() => {
+    deleteAlbums('63e642ecd33568c094bd4380').then((data) => {
+      console.log(data);
     });
   }, []);
 

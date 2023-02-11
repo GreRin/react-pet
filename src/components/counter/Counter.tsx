@@ -1,4 +1,4 @@
-import Panel from '../../common/dropdown/Panel';
+import Panel from '../common/dropdown/Panel';
 import { Button } from 'react-bootstrap';
 import { useReducer } from 'react';
 

@@ -3,9 +3,9 @@ import './HomePage.scss';
 import { useLazyGetUsersRepoQuery, useSearchUsersQuery } from '../../store/github/github.api';
 import { useDebounce } from '../../hooks/debounce';
 import RepoCard from './repo-card/RepoCard';
-import Dropdown from '../../common/dropdown/Dropdown';
+import Dropdown from '../common/dropdown/Dropdown';
 import { IOption } from '../../interfaces';
-import ToastNotification from '../../common/toast/Toast';
+import ToastNotification from '../common/toast/Toast';
 import { Button } from 'react-bootstrap';
 
 const Home = (): any => {

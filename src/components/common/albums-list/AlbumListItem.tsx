@@ -1,6 +1,6 @@
 import ExpandablePanel from '../expandable-panel/ExpandablePanel';
 import React from 'react';
-import { useDeleteAlbumMutation } from '../../store/albums/albums.api';
+import { useDeleteAlbumMutation } from '../../../store/albums/albums.api';
 import { Button } from 'react-bootstrap';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 import { toast } from 'react-toastify';

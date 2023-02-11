@@ -1,4 +1,7 @@
-import { education } from '../components/detail-page/cv/cv-data';
+export interface IAuth {
+  email: string;
+  password: string;
+}
 
 export interface StartDate {
   month: number;

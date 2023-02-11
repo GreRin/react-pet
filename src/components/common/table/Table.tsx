@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { IBreed } from '../../interfaces';
+import { IBreed } from '../../../interfaces';
 
 export const Table = ({ data, config }: any): any => {
   const renderHeaders = config.map((column: any) => {

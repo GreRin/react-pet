@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { IRequestStateBase } from '../../store/users/user.slice';
 import Skeleton from '../skeleton/Sceleton';
 import { Button } from 'react-bootstrap';
-import AddUserForm from '../../common/forms/AddUserForm';
+import AddUserForm from '../common/forms/AddUserForm';
 import useThunk from '../../hooks/thunk.hook';
 import UsersListItem from './UsersListItem';
 import { IUser } from '../../interfaces';

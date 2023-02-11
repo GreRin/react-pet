@@ -1,8 +1,8 @@
 import React from 'react';
-import Table from '../../common/table/Table';
+import Table from './Table';
 import { GoTriangleDown, GoTriangleUp } from 'react-icons/go';
 import './SortableTable.scss';
-import { useSort } from '../../hooks/sort.hook';
+import { useSort } from '../../../hooks/sort.hook';
 
 const getIcons = (label: string, sortBy: string | null, sortOrder: string | null): any => {
   if (label !== sortBy) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTableData } from '../../hooks/tableData.hook';
 import { IBreed } from '../../interfaces';
-import SortableTable from '../../common/table/SortableTable';
+import SortableTable from '../common/table/SortableTable';
 import Counter from '../counter/Counter';
 
 export const TablePage = (): any => {

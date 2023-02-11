@@ -1,7 +1,7 @@
 import Toast from 'react-bootstrap/Toast';
 import './Toast.scss';
 import { ForwardedRef, forwardRef, useContext, useImperativeHandle, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
 
 const ToastNotification = ({ ...props }: any, ref: ForwardedRef<any>): any => {
   const [showToast, setShowToast] = useState(false);

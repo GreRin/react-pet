@@ -7,8 +7,8 @@ import { IUser } from '../../interfaces';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
-import ExpandablePanel from '../../common/expandable-panel/ExpandablePanel';
-import AlbumsList from '../../common/albums-list/AlbumList';
+import ExpandablePanel from '../common/expandable-panel/ExpandablePanel';
+import AlbumsList from '../common/albums-list/AlbumList';
 
 const UsersListItem = ({ user, handleState }: any): JSX.Element => {
   const [doRemoveUser, isDeletingUser, error] = useThunk(removeUser({ user }));

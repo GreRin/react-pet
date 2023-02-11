@@ -1,7 +1,7 @@
 import React from 'react';
 import './PhotoListItem.scss';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
-import { useDeletePhotoMutation } from '../../store/fotos/photos.api';
+import { useDeletePhotoMutation } from '../../../store/fotos/photos.api';
 
 const PhotoListItem = ({ photo, albumId }: any): JSX.Element => {
   const [removePhoto, result] = useDeletePhotoMutation();

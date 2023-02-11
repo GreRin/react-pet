@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
-import { IAuth } from './interface';
+import { IAuth } from '../../interfaces';
 import * as Yup from 'yup';
 
 export const AuthPage = (): any => {

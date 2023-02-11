@@ -1,9 +1,9 @@
 import PhotoListItem from './PhotoListItem';
-import { useAddPhotoMutation, useFetchPhotosQuery } from '../../store/fotos/photos.api';
+import { useAddPhotoMutation, useFetchPhotosQuery } from '../../../store/fotos/photos.api';
 import { Button } from 'react-bootstrap';
 import React from 'react';
-import Skeleton from '../../components/skeleton/Sceleton';
-import { IPhoto } from '../../interfaces';
+import Skeleton from '../../skeleton/Sceleton';
+import { IPhoto } from '../../../interfaces';
 
 const PhotoList = ({ album }: any): JSX.Element => {
   const { data, error, isFetching } = useFetchPhotosQuery(album);
