@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/redux';
 import { getCourseById, getCourses } from '../../query/Courses';
 import CourseCard from './CourseCard';
-import { deleteAlbums, getAlbums } from '../../query/Albums';
+import { createNewFoto, deleteAlbums, getAlbum, getAlbums } from '../../query/Albums';
+import { Button } from 'react-bootstrap';
+import { faker } from '@faker-js/faker/locale/en';
 
 export const FavouritesPage = (): any => {
   const { favourites } = useAppSelector((state) => state.github);
@@ -10,6 +12,7 @@ export const FavouritesPage = (): any => {
   const [course, setCourse] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [album, setAlbum] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     getCourses().then(setCourses);
@@ -24,21 +27,40 @@ export const FavouritesPage = (): any => {
   useEffect(() => {
     getAlbums('abf112c7-aab9-4310-aafd-f0ff7ac148a9').then((data) => {
       setAlbums(data);
-      console.log(albums);
     });
   }, []);
 
-  useEffect(() => {
-    deleteAlbums('63ea177ac531f06c1ecf9690').then((data) => {
+  // useEffect(() => {
+  //   deleteAlbums('63ea177ac531f06c1ecf9690').then((data) => {
+  //     console.log(data);
+  //   });
+  // }, []);
+
+  const addFoto = (): void => {
+    const title = faker.name.jobType();
+    const ref = faker.image.abstract(150, 150, true);
+    createNewFoto('63e12e2c2ac7a41f25932576', title, ref).then((data) => {
       console.log(data);
     });
-  }, []);
+  };
+
+  const getAlbumByid = (): void => {
+    getAlbum('63e12e2c2ac7a41f25932579').then((data) => {
+      console.log(data);
+    });
+  };
 
   if (favourites.length === 0 && courses.length === 0) return <p className="text-center">No items.</p>;
 
   return (
     <>
-      <div className="flex justify-content-center pt-3 w-auto">
+      <div className="flex justify-content-center pt-3 mx-3 w-auto">
+        <Button className="btn btn-warning" type="button" onClick={() => addFoto()}>
+          + Add Foto
+        </Button>
+        <Button className="btn btn-warning ms-3" type="button" onClick={() => getAlbumByid()}>
+          Get Album
+        </Button>
         <ul className="list-none">
           {favourites.map((f) => (
             <li key={f}>

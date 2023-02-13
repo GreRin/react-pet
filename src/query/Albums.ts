@@ -3,6 +3,7 @@ import { request } from 'graphql-request';
 import { getAccessToken } from '../common/common';
 import { GRAPHQL_URL } from '../constants/constants';
 import { setContext } from '@apollo/client/link/context';
+import { ALBUMS_QUERY, CREATE_FOTO, DELETE_ALBUM, GET_ALBUM_BY_ID } from './query.list';
 
 const httpLink = createHttpLink({
   uri: GRAPHQL_URL,
@@ -32,27 +33,13 @@ const client = new ApolloClient({
       fetchPolicy: 'network-only',
     },
     watchQuery: {
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'cache-and-network',
     },
   },
 });
 
 export const getAlbums = async (userId: string): Promise<any> => {
-  const mutation = gql`
-    mutation getAllAlbums($userId: String) {
-      getAllAlbums(userId: $userId) {
-        _id
-        userId
-        title
-        foto {
-          _id
-          title
-          ref
-        }
-        createdAt
-      }
-    }
-  `;
+  const mutation = ALBUMS_QUERY;
   const variables = { userId };
   const context = {
     headers: { Cookies: getAccessToken() },
@@ -65,47 +52,45 @@ export const getAlbums = async (userId: string): Promise<any> => {
   return getAllAlbums;
 };
 
-export const createAlbums = async (userId: string, title: string): Promise<any> => {
-  const mutation = gql`
-    mutation getAllAlbums {
-      albums: getAllAlbums(userId: String, title: String) {
-        _id
-        userId
-        title
-        foto {
-          _id
-          title
-          ref
-        }
-        createdAt
-      }
-    }
-  `;
-  const variables = { userId };
+export const getAlbum = async (albumId: string): Promise<any> => {
+  const mutation = GET_ALBUM_BY_ID;
+  const variables = { albumId };
+  const context = {
+    headers: { Cookies: getAccessToken() },
+  };
+
+  const {
+    data: { getAlbumById },
+  } = await client.mutate({ mutation, variables, context });
+  return getAlbumById[0];
+};
+
+export const createNewFoto = async (albumId: string, title: string, ref: string): Promise<any> => {
+  const mutation = CREATE_FOTO;
+  const variables = { albumId, title, ref };
   const context = {
     headers: { Cookies: getAccessToken() },
   };
   const {
-    data: { albums },
-  } = await client.mutate({ mutation, variables, context });
-  return albums;
+    data: { createFoto },
+  } = await client.mutate({
+    mutation,
+    variables,
+    context,
+    // update: (cache, { data }) => {
+    //   console.log('[creteAlbum] album', data);
+    //   cache.writeQuery({
+    //     query: GET_ALBUM_BY_ID,
+    //     variables: { _id: data.createFoto._id },
+    //     data: data.createFoto,
+    //   });
+    // },
+  });
+  return createFoto;
 };
 
 export const deleteAlbums = async (albumId: string): Promise<any> => {
-  const mutation = gql`
-    mutation deleteAlbum($albumId: String!) {
-      deleteAlbum(_id: $albumId) {
-        userId
-        title
-        foto {
-          _id
-          title
-          ref
-        }
-        createdAt
-      }
-    }
-  `;
+  const mutation = DELETE_ALBUM;
   const variables = { albumId };
   const context = {
     headers: { Cookies: getAccessToken() },

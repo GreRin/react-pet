@@ -1,5 +1,5 @@
 import { ApolloClient, createHttpLink, gql, InMemoryCache } from '@apollo/client';
-import { request } from 'graphql-request';
+// import { request } from 'graphql-request';
 import { GRAPHQL_URL } from '../constants/constants';
 import { getAccessToken } from '../common/common';
 import { setContext } from '@apollo/client/link/context';
@@ -22,6 +22,11 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'cache-first',
+    },
+  },
 });
 
 export const getCourses = async (): Promise<any> => {
