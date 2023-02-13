@@ -29,7 +29,7 @@ export const FavouritesPage = (): any => {
   }, []);
 
   useEffect(() => {
-    deleteAlbums('63e642ecd33568c094bd4380').then((data) => {
+    deleteAlbums('63ea177ac531f06c1ecf9690').then((data) => {
       console.log(data);
     });
   }, []);
