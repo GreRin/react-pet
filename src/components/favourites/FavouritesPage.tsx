@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/redux';
-import { getCourseById, getCourses } from '../../query/Courses';
+import { getCourseById } from '../../graphql-query/Courses';
 import CourseCard from './CourseCard';
-import { createNewFoto, deleteAlbums, getAlbum, getAlbums } from '../../query/Albums';
+import { deleteAlbums, getAlbum, getAlbums } from '../../graphql-query/Albums';
 import { Button } from 'react-bootstrap';
 import { faker } from '@faker-js/faker/locale/en';
+import { useCourses } from '../../hooks/courses.hook';
+import { useAddFoto } from '../../hooks/add-foto.hook';
 
-export const FavouritesPage = (): any => {
+export const FavouritesPage = (): JSX.Element => {
   const { favourites } = useAppSelector((state) => state.github);
   const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState([]);
-  const [albums, setAlbums] = useState([]);
-  const [album, setAlbum] = useState([]);
-  const [open, setOpen] = useState(false);
+
+  const { coursesData, loadingCourses, error } = useCourses();
+  const createFotoPromise = useAddFoto();
 
   useEffect(() => {
-    getCourses().then(setCourses);
-  }, []);
+    setCourses(coursesData);
+  }, [coursesData]);
 
   useEffect(() => {
-    getCourseById(2).then((data) => {
-      setCourse(data);
+    getCourseById(2).then((item: React.SetStateAction<never[]>) => {
+      setCourse(item);
     });
   }, []);
 
   useEffect(() => {
-    getAlbums('abf112c7-aab9-4310-aafd-f0ff7ac148a9').then((data) => {
-      setAlbums(data);
-    });
+    getAlbums('abf112c7-aab9-4310-aafd-f0ff7ac148a9');
   }, []);
 
   // useEffect(() => {
@@ -36,21 +36,22 @@ export const FavouritesPage = (): any => {
   //   });
   // }, []);
 
-  const addFoto = (): void => {
+  const addFoto = async (): Promise<void> => {
     const title = faker.name.jobType();
     const ref = faker.image.abstract(150, 150, true);
-    createNewFoto('63e12e2c2ac7a41f25932576', title, ref).then((data) => {
-      console.log(data);
+    const albumId = '63e12e2c2ac7a41f25932579';
+
+    createFotoPromise.then(async ({ loading, createFoto }) => {
+      const foto = await createFoto(title, ref, albumId);
+      console.log(foto);
     });
   };
 
   const getAlbumByid = (): void => {
-    getAlbum('63e12e2c2ac7a41f25932579').then((data) => {
-      console.log(data);
-    });
+    getAlbum('63e12e2c2ac7a41f25932579');
   };
 
-  if (favourites.length === 0 && courses.length === 0) return <p className="text-center">No items.</p>;
+  if (!loadingCourses && !favourites) return <p className="text-center">No items.</p>;
 
   return (
     <>
@@ -72,7 +73,7 @@ export const FavouritesPage = (): any => {
         </ul>
       </div>
       <div className="w-100 d-inline-flex">
-        {courses && courses.map((data, index) => <CourseCard course={data} key={index} />)}
+        {courses && courses.map((item, index) => <CourseCard course={item} key={index} />)}
       </div>
     </>
   );

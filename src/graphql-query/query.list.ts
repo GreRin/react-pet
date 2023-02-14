@@ -42,7 +42,7 @@ export const GET_ALBUM_BY_ID = gql`
 
 export const CREATE_FOTO = gql`
   mutation createFoto($albumId: String!, $title: String, $ref: String) {
-    createFoto(_id: $albumId, title: $title, ref: $ref) {
+    foto: createFoto(_id: $albumId, title: $title, ref: $ref) {
       _id
       title
       ref
@@ -61,6 +61,34 @@ export const DELETE_ALBUM = gql`
         ref
       }
       createdAt
+    }
+  }
+`;
+
+export const GET_ALL_COURSES = gql`
+  query getAllCourses {
+    getAllCourses {
+      id
+      title
+      author
+      description
+      topic
+      url
+      __typename
+    }
+  }
+`;
+
+export const GET_COURSE_BY_ID = gql`
+  query courseQuery($id: Int!) {
+    course(id: $id) {
+      id
+      title
+      author
+      description
+      topic
+      url
+      __typename
     }
   }
 `;

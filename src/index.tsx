@@ -3,17 +3,40 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 import { GRAPHQL_URL } from './constants/constants';
+import { setContext } from '@apollo/client/link/context';
+import { getAccessToken } from './common/common';
 
-const link = createHttpLink({
+const httpLink = createHttpLink({
   uri: GRAPHQL_URL,
-  credentials: 'include',
+  credentials: 'same-origin',
 });
 
-const client = new ApolloClient({
-  link: link,
+const authLink = setContext((_, { headers }) => {
+  const token = getAccessToken();
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+export const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    query: {
+      fetchPolicy: 'network-only',
+    },
+    mutate: {
+      fetchPolicy: 'network-only',
+    },
+    watchQuery: {
+      fetchPolicy: 'cache-and-network',
+    },
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
